@@ -59,3 +59,49 @@ O repositório Git foi inicializado e organizado com commits semânticos:
 - `feat: adiciona demos web de visualizacao`;
 - `feat: adiciona demo conceitual de WebAR`;
 - `feat: adiciona exemplo atualizado do 8th Wall`.
+
+---
+
+## [2026-06-01] - Refinamento das Demos para Clareza Didática e Consistência dos Dados
+
+**Problema/Desafio:**
+Após a criação inicial das demos, algumas visualizações ainda não comunicavam bem o objetivo pedagógico. O D3 parecia um grafo genérico difícil de interpretar; o Leaflet inicialmente era apenas um mapa com marcadores; o p5.js tinha dados próprios e não refletia corretamente o caso de temperatura crítica com CO₂ baixo; Chart.js e D3 também aparentavam dados desatualizados por cache do navegador.
+
+**O Raciocínio:**
+- A primeira versão do D3 usava uma simulação de força. Embora tecnicamente interessante, ela não era a melhor escolha para aula, pois a disposição automática dos nós gerava ambiguidade visual. A pergunta didática não era “quais entidades existem?”, mas “como um dado vira decisão?”. Por isso, a visualização foi redesenhada como um fluxo explícito: ambiente físico → sensor → gateway → modelo → alerta → operador.
+- No Leaflet, a pergunta relevante era espacial: “onde está o problema e como priorizar a inspeção?”. Por isso, em vez de apenas marcadores, a demo passou a incluir painel operacional, filtros, lista de prioridade, área monitorada, zonas de risco e rota da base de manutenção até o sensor selecionado.
+- O p5.js exigia uma mudança conceitual maior: ele estava usando dados hardcoded e só considerava CO₂ para status. Isso contradizia o caso importante para a aula: um ambiente crítico por temperatura alta mesmo com CO₂ baixo. A solução foi sincronizar com `web/data/sensors.json`, considerar temperatura e CO₂, e transformar a demo em um simulador 2D com modos de interação.
+- Para evitar inconsistências percebidas em aula, foi necessário lidar com cache de navegador adicionando query strings (`?v=...`) e `cache: 'no-store'` em chamadas `fetch`. Isso foi especialmente importante porque as demos são estáticas, servidas por Nginx, e mudanças rápidas em arquivos JS/JSON podem não aparecer imediatamente no navegador ou celular.
+- A responsividade do p5.js foi tratada com um sistema de coordenadas lógico (`LOGICAL_WIDTH`/`LOGICAL_HEIGHT`) e escala proporcional. Assim, o canvas se adapta ao contêiner sem quebrar detecção de clique, pois `mouseX`/`mouseY` são convertidos de volta para coordenadas lógicas.
+
+**A Decisão/Solução:**
+Foram feitas as seguintes melhorias:
+- D3 redesenhado como fluxo de decisão, com legenda de temperatura e CO₂ no topo.
+- Leaflet transformado em mapa operacional com KPIs, filtros, camadas, zonas de risco e rota de inspeção.
+- Chart.js e D3 ajustados para carregar dados com cache busting.
+- p5.js sincronizado com os dados compartilhados e convertido em simulador 2D de conforto ambiental.
+- p5.js recebeu painel de sala selecionada, modos `+ Pessoas`, `Ventilar` e `Falha térmica`, botão de reset, indicadores separados de temperatura/CO₂ e layout responsivo.
+- p5.js passou a exibir área em m² por ambiente e a desenhar as informações em cards escuros/translúcidos sobre as partículas, evitando perda de legibilidade.
+
+---
+
+## [2026-06-01] - Modelo Didático de Métricas e Estados Operacionais
+
+**Problema/Desafio:**
+As demos precisavam deixar explícito como o status `normal`, `atenção` e `crítico` era calculado, especialmente porque o caso de temperatura alta com CO₂ baixo poderia confundir se o aluno assumisse que todo alerta vinha de ar poluído.
+
+**O Raciocínio:**
+- A página inicial deveria funcionar como “contrato semântico” dos dados: antes de abrir qualquer demo, o aluno precisa saber quais métricas existem e quais limites geram cada estado.
+- A temperatura e o CO₂ são métricas principais porque determinam diretamente o status. Ocupação e energia são métricas auxiliares: ocupação ajuda a explicar causa provável; energia ajuda a discutir custo operacional.
+- Mantive limites simples e legíveis, mesmo que em um projeto real eles dependessem de normas, tipo de ambiente, capacidade do HVAC e histórico operacional. Para aula, a regra precisa ser transparente.
+- A presença de ícones como 🌡️ e 🌫️ reforça a distinção entre desconforto térmico e qualidade do ar, que é central para explicar o caso HVAC-A.
+
+**A Decisão/Solução:**
+A home recebeu uma seção explicativa com:
+- Temperatura: `≤ 25,5 °C` normal, `> 25,5 °C` atenção, `> 27,5 °C` crítico.
+- CO₂: `≤ 850 ppm` normal, `> 850 ppm` atenção, `> 1200 ppm` crítico.
+- Ocupação como explicação de pressão sobre CO₂/calor.
+- Energia como indicador de esforço/custo operacional.
+- Status final crítico se temperatura ou CO₂ ultrapassarem limite crítico.
+
+Também foi criado no dataset o caso `HVAC-A`: temperatura `28,4 °C`, CO₂ `640 ppm`, status `crítico`, para demonstrar que um alerta pode ser térmico mesmo sem ar poluído.
