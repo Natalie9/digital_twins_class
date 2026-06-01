@@ -160,6 +160,33 @@
     .decision { min-height: 160px; }
     .decision p { font-size: clamp(15px, 1.25vw, 20px); margin-bottom: 0; }
 
+    .metric-legend {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+    .metric-box h4 { margin-bottom: 12px; }
+    .scale {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .scale span {
+      display: block;
+      border-radius: 14px;
+      padding: 10px 8px;
+      font-size: clamp(12px, .95vw, 15px);
+      line-height: 1.2;
+      text-align: center;
+      color: #0f172a;
+      font-weight: 750;
+    }
+    .scale .ok { background: #bbf7d0; }
+    .scale .warn { background: #fef08a; }
+    .scale .bad { background: #fecaca; }
+    .scenario-text p { font-size: clamp(15px, 1.22vw, 20px); margin: 10px 0 0; }
+
     .footer {
       position: fixed;
       left: 24px;
@@ -214,7 +241,7 @@
     @media (max-width: 900px) {
       html, body { overflow: auto; }
       .slide { padding: 6vh 5vw 10vh; align-items: flex-start; overflow-y: auto; }
-      .grid.cols-2, .grid.cols-3, .grid.cols-4, .two-pane, .flow { grid-template-columns: 1fr; }
+      .grid.cols-2, .grid.cols-3, .grid.cols-4, .two-pane, .flow, .metric-legend { grid-template-columns: 1fr; }
       .row { grid-template-columns: 1fr; }
       .footer { display: none; }
       .nav { top: auto; bottom: 14px; left: 14px; right: 14px; justify-content: center; }
@@ -276,7 +303,38 @@
           <div class="step">Alerta</div>
           <div class="step">Operador</div>
         </div>
-        <p class="lead" style="margin-top:32px">Métricas: temperatura, CO₂, ocupação, energia, status e prioridade de inspeção.</p>
+
+        <div class="grid cols-2" style="margin-top:24px">
+          <div class="card scenario-text compact">
+            <h3>O que está sendo simulado?</h3>
+            <p>Um laboratório/edifício com ambientes monitorados por sensores fictícios. Cada ambiente envia leituras de <strong>temperatura</strong>, <strong>CO₂</strong>, <strong>ocupação</strong> e <strong>energia</strong>.</p>
+            <p>A interface transforma essas leituras em <strong>estado operacional</strong>: normal, atenção ou crítico. Assim, a aula compara como cada ferramenta apoia uma decisão diferente.</p>
+          </div>
+          <div class="card scenario-text compact">
+            <h3>Como interpretar o status?</h3>
+            <p>O status final fica <strong>crítico</strong> se temperatura ou CO₂ ultrapassarem o limite crítico. Fica em <strong>atenção</strong> se alguma métrica passar do limite de atenção.</p>
+            <p>Ocupação ajuda a explicar o aumento de CO₂ e calor. Energia indica impacto operacional e esforço do sistema HVAC.</p>
+          </div>
+        </div>
+
+        <div class="metric-legend">
+          <div class="card metric-box compact">
+            <h4>🌡️ Temperatura — conforto e HVAC</h4>
+            <div class="scale">
+              <span class="ok">≤ 25,5 °C<br>normal</span>
+              <span class="warn">&gt; 25,5 °C<br>atenção</span>
+              <span class="bad">&gt; 27,5 °C<br>crítico</span>
+            </div>
+          </div>
+          <div class="card metric-box compact">
+            <h4>🌫️ CO₂ — qualidade do ar</h4>
+            <div class="scale">
+              <span class="ok">≤ 850 ppm<br>normal</span>
+              <span class="warn">&gt; 850 ppm<br>atenção</span>
+              <span class="bad">&gt; 1200 ppm<br>crítico</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
