@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chart.js - Painel de Sensores</title>
+  <link rel="stylesheet" href="../style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    .charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; }
+    canvas { width: 100%; max-height: 330px; }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <a href="../">← voltar</a>
+    <h1>Chart.js — Painel de Sensores</h1>
+    <p>Gráficos prontos para acompanhar tendência, comparação e distribuição dos estados.</p>
+
+    <section class="charts">
+      <div class="panel"><h2>CO₂ ao longo do tempo</h2><canvas id="co2Line"></canvas></div>
+      <div class="panel"><h2>Energia por ambiente</h2><canvas id="energyBar"></canvas></div>
+      <div class="panel"><h2>Estado dos ambientes</h2><canvas id="statusDonut"></canvas></div>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
