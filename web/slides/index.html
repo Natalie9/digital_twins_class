@@ -260,402 +260,318 @@
 <body>
   <div class="deck">
     <section class="slide active">
-      <div class="content">
-        <div class="kicker">Gêmeos Digitais</div>
-        <h1>Visualização e Interface</h1>
-        <p class="lead">Como transformar sensores, modelos e alertas em interfaces que apoiam decisões.</p>
-        <div>
-          <span class="pill">Dashboards</span>
-          <span class="pill green">Visualização 2D</span>
-          <span class="pill yellow">Mapas</span>
-          <span class="pill purple">Visualização customizada</span>
-          <span class="pill red">AR/WebAR</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="content">
-        <div class="kicker">Ideia central</div>
-        <h2>A interface ideal depende da decisão</h2>
-        <div class="grid cols-2" style="margin-top:34px">
-          <div class="card">
-            <h3>Não é só “mostrar dados”</h3>
-            <p>Uma boa interface responde: <strong>o que está acontecendo?</strong>, <strong>onde?</strong>, <strong>qual o risco?</strong> e <strong>o que fazer?</strong></p>
-          </div>
-          <div class="card">
-            <h3>É uma camada operacional</h3>
-            <p>Ela conecta dados, modelo, contexto físico e usuário para apoiar monitoramento, diagnóstico, simulação ou ação.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="content">
-        <div class="kicker">Cenário das demos</div>
-        <h2>Gêmeo Digital de um edifício inteligente</h2>
-        <div class="flow">
-          <div class="step">Salas</div>
-          <div class="step">Sensores</div>
-          <div class="step">Gateway</div>
-          <div class="step">Modelo</div>
-          <div class="step">Alerta</div>
-          <div class="step">Operador</div>
-        </div>
-
-        <div class="grid cols-2" style="margin-top:24px">
-          <div class="card scenario-text compact">
-            <h3>O que está sendo simulado?</h3>
-            <p>Um laboratório/edifício com ambientes monitorados por sensores fictícios. Cada ambiente envia leituras de <strong>temperatura</strong>, <strong>CO₂</strong>, <strong>ocupação</strong> e <strong>energia</strong>.</p>
-            <p>A interface transforma essas leituras em <strong>estado operacional</strong>: normal, atenção ou crítico. Assim, a aula compara como cada ferramenta apoia uma decisão diferente.</p>
-          </div>
-          <div class="card scenario-text compact">
-            <h3>Como interpretar o status?</h3>
-            <p>O status final fica <strong>crítico</strong> se temperatura ou CO₂ ultrapassarem o limite crítico. Fica em <strong>atenção</strong> se alguma métrica passar do limite de atenção.</p>
-            <p>Ocupação ajuda a explicar o aumento de CO₂ e calor. Energia indica impacto operacional e esforço do sistema HVAC.</p>
-          </div>
-        </div>
-
-        <div class="metric-legend">
-          <div class="card metric-box compact">
-            <h4>🌡️ Temperatura — conforto e HVAC</h4>
-            <div class="scale">
-              <span class="ok">≤ 25,5 °C<br>normal</span>
-              <span class="warn">&gt; 25,5 °C<br>atenção</span>
-              <span class="bad">&gt; 27,5 °C<br>crítico</span>
-            </div>
-          </div>
-          <div class="card metric-box compact">
-            <h4>🌫️ CO₂ — qualidade do ar</h4>
-            <div class="scale">
-              <span class="ok">≤ 850 ppm<br>normal</span>
-              <span class="warn">&gt; 850 ppm<br>atenção</span>
-              <span class="bad">&gt; 1200 ppm<br>crítico</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="content">
-        <div class="kicker">Roteiro da demonstração</div>
-        <h2>Da tela analítica à interface de campo</h2>
-        <div class="grid cols-3" style="margin-top:28px">
-          <div class="card decision"><h3>1. Gráficos</h3><p><strong>Chart.js</strong> para tendências e comparações rápidas.</p></div>
-          <div class="card decision"><h3>2. Dashboard</h3><p><strong>Streamlit</strong> para KPIs, filtros, tabelas e recomendações.</p></div>
-          <div class="card decision"><h3>3. Relações</h3><p><strong>D3.js</strong> para explicar entidades e fluxo de decisão.</p></div>
-          <div class="card decision"><h3>4. Simulação 2D</h3><p><strong>p5.js</strong> para comportamento, planta baixa e zonas.</p></div>
-          <div class="card decision"><h3>5. Espaço</h3><p><strong>Leaflet</strong> para sensores distribuídos em campus/cidade.</p></div>
-          <div class="card decision"><h3>6. Campo</h3><p><strong>8th Wall</strong> para sobrepor dados ao ativo físico.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="content">
-        <div class="tool-title"><div class="tool-icon">📊</div><h2>Chart.js</h2></div>
-        <p class="lead">Biblioteca JavaScript para criar gráficos responsivos em páginas web com pouca configuração.</p>
-        <div class="two-pane compact">
-          <div class="card light">
-            <h3>O que é</h3>
-            <p>Chart.js entrega componentes prontos para gráficos comuns: linha, barra, rosca, radar, dispersão e área.</p>
-            <p>É indicada quando a aplicação web precisa incorporar visualizações tradicionais de forma rápida e leve.</p>
-          </div>
-          <div class="card compact">
-            <h3>Quando usar em Gêmeos Digitais</h3>
-            <ul>
-              <li>séries temporais de sensores;</li>
-              <li>comparação entre ativos ou ambientes;</li>
-              <li>distribuição de estados;</li>
-              <li>painéis web simples integrados a Flask, Node, Django etc.</li>
-            </ul>
-            <a class="demo-link" href="../chartjs/">Abrir demo Chart.js →</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="content">
-        <div class="kicker">Chart.js na aula</div>
-        <h2>Monitorar valores e tendências</h2>
-        <div class="mini-table">
-          <div class="row"><b>Demonstração</b><span>CO₂ ao longo do tempo, energia por ambiente e distribuição de estados.</span></div>
-          <div class="row"><b>Força</b><span>Baixa barreira de entrada; ótimo para gráficos padrão e dashboards web simples.</span></div>
-          <div class="row"><b>Limite</b><span>Menos adequado quando a visualização precisa fugir muito dos formatos tradicionais.</span></div>
-          <div class="row"><b>Mensagem</b><span>“Quando preciso incorporar gráficos simples em uma página web, Chart.js resolve rapidamente.”</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="content">
-        <div class="tool-title"><div class="tool-icon">🐍</div><h2>Streamlit</h2></div>
-        <p class="lead">Framework Python para transformar scripts de análise de dados em aplicações web interativas.</p>
-        <div class="two-pane compact">
-          <div class="card light">
-            <h3>O que é</h3>
-            <p>Streamlit permite criar interfaces com poucas linhas de Python: métricas, filtros, tabelas, gráficos, upload de arquivos e layout em colunas.</p>
-            <p>É muito usado para prototipação, ciência de dados, ML e dashboards internos.</p>
-          </div>
-          <div class="card compact">
-            <h3>Quando usar em Gêmeos Digitais</h3>
-            <ul>
-              <li>prototipar dashboard operacional rapidamente;</li>
-              <li>explorar dados de sensores e modelos preditivos;</li>
-              <li>criar interfaces para especialistas técnicos;</li>
-              <li>validar KPIs antes de desenvolver produto final.</li>
-            </ul>
-            <a class="demo-link" href="http://localhost:8501">Abrir Streamlit →</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="content">
-        <div class="kicker">Streamlit na aula</div>
-        <h2>Dashboard operacional rápido</h2>
-        <div class="mini-table">
-          <div class="row"><b>Demonstração</b><span>Filtros por ambiente, KPIs, série temporal, tabela de estado e recomendações.</span></div>
-          <div class="row"><b>Força</b><span>Excelente produtividade quando os dados já estão em Python/Pandas.</span></div>
-          <div class="row"><b>Limite</b><span>Menos controle visual fino do que aplicações front-end customizadas.</span></div>
-          <div class="row"><b>Mensagem</b><span>“Com Python, consigo montar um protótipo de interface analítica para decisão em poucos minutos.”</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="content">
-        <div class="tool-title"><div class="tool-icon">🔗</div><h2>D3.js</h2></div>
-        <p class="lead">Biblioteca JavaScript para visualização de dados customizada, baseada em SVG, Canvas e DOM.</p>
-        <div class="two-pane compact">
-          <div class="card light">
-            <h3>O que é</h3>
-            <p>D3 não é apenas uma biblioteca de gráficos prontos. Ela oferece primitivas para mapear dados em elementos visuais.</p>
-            <p>É ideal quando a forma da visualização precisa ser desenhada conforme o problema.</p>
-          </div>
-          <div class="card compact">
-            <h3>Quando usar em Gêmeos Digitais</h3>
-            <ul>
-              <li>grafos de sensores, ativos e dependências;</li>
-              <li>fluxos de energia, processo ou informação;</li>
-              <li>diagramas interativos e drill-down;</li>
-              <li>visualizações que não cabem em gráfico padrão.</li>
-            </ul>
-            <a class="demo-link" href="../d3/">Abrir demo D3.js →</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="content">
-        <div class="kicker">D3.js na aula</div>
-        <h2>Mostrar a cadeia dado → decisão</h2>
-        <div class="card" style="margin-top:28px">
-          <p class="lead"><strong>Ambiente físico → sensor → gateway → modelo → alerta → operador</strong></p>
-          <p>D3 ajuda a explicar que o Gêmeo Digital não é apenas o valor de um sensor. É uma rede de entidades, relações, modelos e ações.</p>
-          <div>
-            <span class="pill">entidades</span>
-            <span class="pill purple">dependências</span>
-            <span class="pill green">fluxo de informação</span>
-            <span class="pill red">alertas</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="content">
-        <div class="tool-title"><div class="tool-icon">🎨</div><h2>p5.js</h2></div>
-        <p class="lead">Biblioteca JavaScript criativa para desenho, animação, interação e simulações em Canvas.</p>
-        <div class="two-pane compact">
-          <div class="card light">
-            <h3>O que é</h3>
-            <p>p5.js foi criada para tornar programação visual acessível. Ela facilita desenhar formas, animar partículas, capturar interação e simular comportamentos simples.</p>
-            <p>É muito útil para protótipos visuais e experiências didáticas.</p>
-          </div>
-          <div class="card compact">
-            <h3>Quando usar em Gêmeos Digitais</h3>
-            <ul>
-              <li>planta baixa interativa;</li>
-              <li>simulação de fluxo de pessoas, ar, calor ou partículas;</li>
-              <li>representação visual de zonas afetadas;</li>
-              <li>interfaces experimentais e educacionais.</li>
-            </ul>
-            <a class="demo-link" href="../p5/">Abrir p5.js →</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="content">
-        <div class="kicker">p5.js na aula</div>
-        <h2>Representar comportamento, não só números</h2>
-        <div class="mini-table">
-          <div class="row"><b>Demonstração</b><span>Planta 2D com salas, pessoas/partículas, ocupação e risco de CO₂.</span></div>
-          <div class="row"><b>Força</b><span>Boa para simular e comunicar dinâmica visual de forma intuitiva.</span></div>
-          <div class="row"><b>Limite</b><span>Não é a melhor opção para dashboards empresariais tradicionais ou mapas geográficos.</span></div>
-          <div class="row"><b>Mensagem</b><span>“Uma interface pode representar comportamento espacial e temporal, não apenas gráficos.”</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="content">
-        <div class="tool-title"><div class="tool-icon">🗺️</div><h2>Leaflet</h2></div>
-        <p class="lead">Biblioteca JavaScript leve para mapas interativos, marcadores, camadas e popups.</p>
-        <div class="two-pane compact">
-          <div class="card light">
-            <h3>O que é</h3>
-            <p>Leaflet é uma das bibliotecas mais populares para mapas web 2D. Integra mapas base, marcadores, polígonos, círculos, popups e plugins.</p>
-            <p>É simples, extensível e funciona bem em desktop e mobile.</p>
-          </div>
-          <div class="card compact">
-            <h3>Quando usar em Gêmeos Digitais</h3>
-            <ul>
-              <li>sensores distribuídos em campus ou cidade;</li>
-              <li>ativos em campo e inspeções;</li>
-              <li>zonas de risco, rotas e áreas afetadas;</li>
-              <li>interfaces de operação geográfica.</li>
-            </ul>
-            <a class="demo-link" href="../leaflet/">Abrir Leaflet →</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="content">
-        <div class="kicker">Leaflet na aula</div>
-        <h2>Quando localização vira parte da decisão</h2>
-        <div class="mini-table">
-          <div class="row"><b>Demonstração</b><span>Mapa com sensores, popups operacionais, zonas de atenção e camadas.</span></div>
-          <div class="row"><b>Força</b><span>Excelente para “onde está o problema?” e “qual local priorizar?”.</span></div>
-          <div class="row"><b>Limite</b><span>Não substitui visualizações 3D, BIM ou análises geoespaciais mais pesadas.</span></div>
-          <div class="row"><b>Mensagem</b><span>“Quando ativos estão distribuídos no território, o mapa é a interface natural.”</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="content">
-        <div class="tool-title"><div class="tool-icon">🥽</div><h2>8th Wall / WebAR</h2></div>
-        <p class="lead">Stack para criar experiências AR e 3D no navegador, agora com componentes abertos em 8thwall.org.</p>
-        <div class="two-pane compact">
-          <div class="card light">
-            <h3>O que é</h3>
-            <p>8th Wall permite experiências WebAR sem instalar aplicativo nativo. A versão atual combina Studio Desktop, exemplos no GitHub e engine distribuída.</p>
-            <p>O projeto passou a ser aberto; o SLAM continua distribuído como binário.</p>
-          </div>
-          <div class="card compact">
-            <h3>Quando usar em Gêmeos Digitais</h3>
-            <ul>
-              <li>inspeção de ativo em campo;</li>
-              <li>overlay de status, risco e instruções;</li>
-              <li>manutenção assistida;</li>
-              <li>treinamento operacional no ambiente físico.</li>
-            </ul>
-            <a class="demo-link" href="../8thwall-digital-twin/">Abrir 8th Wall →</a>
-            <a class="demo-link" href="../8thwall-mock/">Plano B: mock →</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="content">
-        <div class="kicker">8th Wall na aula</div>
-        <h2>Do dashboard remoto à interface no ativo</h2>
-        <div class="mini-table">
-          <div class="row"><b>Demonstração</b><span>Posicionar um HVAC em AR e visualizar painel com temperatura, vibração, CO₂ e ação recomendada.</span></div>
-          <div class="row"><b>Força</b><span>A informação aparece no contexto físico, reduzindo esforço de interpretação em campo.</span></div>
-          <div class="row"><b>Cuidados</b><span>HTTPS, câmera, compatibilidade do dispositivo, precisão espacial, latência e excesso visual.</span></div>
-          <div class="row"><b>Mensagem</b><span>“AR agrega valor quando a decisão precisa ser tomada olhando para o ativo físico.”</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="content">
-        <div class="kicker">Comparação rápida</div>
-        <h2>Qual ferramenta escolher?</h2>
-        <div class="grid cols-3" style="margin-top:28px">
-          <div class="card decision"><h3 class="blue">Acompanhar operação</h3><p>Streamlit e Chart.js para KPIs, tendência e comparação.</p></div>
-          <div class="card decision"><h3 class="purple">Entender relações</h3><p>D3.js para entidades, dependências e fluxo de decisão.</p></div>
-          <div class="card decision"><h3 class="green">Simular comportamento</h3><p>p5.js para planta, partículas e dinâmica visual.</p></div>
-          <div class="card decision"><h3 class="yellow">Localizar problema</h3><p>Leaflet para sensores, zonas, rotas e território.</p></div>
-          <div class="card decision"><h3 class="red">Inspecionar em campo</h3><p>8th Wall/WebAR para sobrepor dados ao ativo físico.</p></div>
-          <div class="card decision"><h3 class="cyan">Pergunta-chave</h3><p>Qual decisão o usuário precisa tomar olhando para a interface?</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="content">
-        <div class="kicker">Boas práticas</div>
-        <h2>Interface deve reduzir incerteza</h2>
-        <div class="grid cols-2" style="margin-top:28px">
-          <div class="card compact">
-            <h3>Princípios úteis</h3>
-            <ul>
-              <li>visão geral primeiro;</li>
-              <li>zoom/filtro quando necessário;</li>
-              <li>detalhes sob demanda;</li>
-              <li>cores com significado operacional;</li>
-              <li>alerta sempre ligado a ação sugerida.</li>
-            </ul>
-          </div>
-          <div class="card compact">
-            <h3>Evitar</h3>
-            <ul>
-              <li>excesso de gráficos sem decisão associada;</li>
-              <li>cor decorativa confundida com status;</li>
-              <li>AR/3D usado só por impacto visual;</li>
-              <li>ocultar incerteza, latência ou qualidade do dado.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="content">
-        <div class="kicker">Atividade final</div>
-        <h2>Projete a interface do seu Gêmeo Digital</h2>
-        <div class="card" style="margin-top:28px">
-          <ul>
-            <li>Quais dados precisam aparecer?</li>
-            <li>Quais KPIs indicam risco?</li>
-            <li>Precisa de dashboard, mapa, 2D, 3D ou AR?</li>
-            <li>Onde entram alertas e recomendações?</li>
-            <li>Uma interface imersiva agrega valor ou é excesso?</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="content">
-        <div class="kicker">Fechamento</div>
-        <h2>A tecnologia vem depois da decisão</h2>
-        <p class="lead">Primeiro defina a tarefa do usuário: acompanhar, diagnosticar, localizar, simular ou interagir com o sistema físico.</p>
-        <div style="margin-top:24px">
-          <a class="demo-link" href="../chartjs/">Chart.js</a>
-          <a class="demo-link" href="http://localhost:8501">Streamlit</a>
-          <a class="demo-link" href="../d3/">D3.js</a>
-          <a class="demo-link" href="../p5/">p5.js</a>
-          <a class="demo-link" href="../leaflet/">Leaflet</a>
-          <a class="demo-link" href="../8thwall-digital-twin/">8th Wall</a>
-        </div>
-      </div>
-    </section>
+  <div class="content">
+    <div class="kicker">Gêmeos Digitais</div>
+    <h1>Visualização e Interface</h1>
+    <p class="lead">Como transformar sensores, modelos e alertas em interfaces que apoiam decisões.</p>
+    <div>
+      <span class="pill">Dashboards</span>
+      <span class="pill green">Visualização 2D</span>
+      <span class="pill yellow">Mapas</span>
+      <span class="pill purple">Visualização customizada</span>
+      <span class="pill red">AR/WebAR</span>
+    </div>
   </div>
+</section>
 
+    <section class="slide">
+  <div class="content">
+    <div class="kicker">Ideia central</div>
+    <h2>A interface ideal depende da decisão</h2>
+    <div class="grid cols-2" style="margin-top:34px">
+      <div class="card">
+        <h3>Não é só “mostrar dados”</h3>
+        <p>Uma boa interface responde: <strong>o que está acontecendo?</strong>, <strong>onde?</strong>, <strong>qual o risco?</strong> e <strong>o que fazer?</strong></p>
+      </div>
+      <div class="card">
+        <h3>É uma camada operacional</h3>
+        <p>Ela conecta dados, modelo, contexto físico e usuário para apoiar monitoramento, diagnóstico, simulação ou ação.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <section class="slide">
+  <div class="content">
+    <div class="kicker">Cenário das demos</div>
+    <h2>Gêmeo Digital de um edifício inteligente</h2>
+    <div class="flow">
+      <div class="step">Salas</div>
+      <div class="step">Sensores</div>
+      <div class="step">Gateway</div>
+      <div class="step">Modelo</div>
+      <div class="step">Alerta</div>
+      <div class="step">Operador</div>
+    </div>
+
+    <div class="grid cols-2" style="margin-top:24px">
+      <div class="card scenario-text compact">
+        <h3>O que está sendo simulado?</h3>
+        <p>Um laboratório/edifício com ambientes monitorados por sensores fictícios. Cada ambiente envia leituras de <strong>temperatura</strong>, <strong>CO₂</strong>, <strong>ocupação</strong> e <strong>energia</strong>.</p>
+        <p>A interface transforma essas leituras em <strong>estado operacional</strong>: normal, atenção ou crítico. Assim, a aula compara como cada ferramenta apoia uma decisão diferente.</p>
+      </div>
+      <div class="card scenario-text compact">
+        <h3>Como interpretar o status?</h3>
+        <p>O status final fica <strong>crítico</strong> se temperatura ou CO₂ ultrapassarem o limite crítico. Fica em <strong>atenção</strong> se alguma métrica passar do limite de atenção.</p>
+        <p>Ocupação ajuda a explicar o aumento de CO₂ e calor. Energia indica impacto operacional e esforço do sistema HVAC.</p>
+      </div>
+    </div>
+
+    <div class="metric-legend">
+      <div class="card metric-box compact">
+        <h4>🌡️ Temperatura — conforto e HVAC</h4>
+        <div class="scale">
+          <span class="ok">≤ 25,5 °C<br>normal</span>
+          <span class="warn">&gt; 25,5 °C<br>atenção</span>
+          <span class="bad">&gt; 27,5 °C<br>crítico</span>
+        </div>
+      </div>
+      <div class="card metric-box compact">
+        <h4>🌫️ CO₂ — qualidade do ar</h4>
+        <div class="scale">
+          <span class="ok">≤ 850 ppm<br>normal</span>
+          <span class="warn">&gt; 850 ppm<br>atenção</span>
+          <span class="bad">&gt; 1200 ppm<br>crítico</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <section class="slide">
+  <div class="content">
+    <div class="tool-title"><div class="tool-icon">📊</div><h2>Chart.js</h2></div>
+    <p class="lead">Biblioteca JavaScript para criar gráficos responsivos em páginas web com pouca configuração.</p>
+    <div class="two-pane compact">
+      <div class="card light">
+        <h3>O que é</h3>
+        <p>Chart.js entrega componentes prontos para gráficos comuns: linha, barra, rosca, radar, dispersão e área.</p>
+        <p>É indicada quando a aplicação web precisa incorporar visualizações tradicionais de forma rápida e leve.</p>
+      </div>
+      <div class="card compact">
+        <h3>Quando usar em Gêmeos Digitais</h3>
+        <ul>
+          <li>séries temporais de sensores;</li>
+          <li>comparação entre ativos ou ambientes;</li>
+          <li>distribuição de estados;</li>
+          <li>painéis web simples integrados a Flask, Node, Django etc.</li>
+        </ul>
+        <a class="demo-link" href="../chartjs/">Abrir demo Chart.js →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <section class="slide">
+  <div class="content">
+    <div class="tool-title"><div class="tool-icon">🐍</div><h2>Streamlit</h2></div>
+    <p class="lead">Framework Python para transformar scripts de análise de dados em aplicações web interativas.</p>
+    <div class="two-pane compact">
+      <div class="card light">
+        <h3>O que é</h3>
+        <p>Streamlit permite criar interfaces com poucas linhas de Python: métricas, filtros, tabelas, gráficos, upload de arquivos e layout em colunas.</p>
+        <p>É muito usado para prototipação, ciência de dados, ML e dashboards internos.</p>
+      </div>
+      <div class="card compact">
+        <h3>Quando usar em Gêmeos Digitais</h3>
+        <ul>
+          <li>prototipar dashboard operacional rapidamente;</li>
+          <li>explorar dados de sensores e modelos preditivos;</li>
+          <li>criar interfaces para especialistas técnicos;</li>
+          <li>validar KPIs antes de desenvolver produto final.</li>
+        </ul>
+        <a class="demo-link" href="http://localhost:8501">Abrir Streamlit →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <section class="slide">
+  <div class="content">
+    <div class="tool-title"><div class="tool-icon">🔗</div><h2>D3.js</h2></div>
+    <p class="lead">Biblioteca JavaScript para visualização de dados customizada, baseada em SVG, Canvas e DOM.</p>
+    <div class="two-pane compact">
+      <div class="card light">
+        <h3>O que é</h3>
+        <p>D3 não é apenas uma biblioteca de gráficos prontos. Ela oferece primitivas para mapear dados em elementos visuais.</p>
+        <p>É ideal quando a forma da visualização precisa ser desenhada conforme o problema.</p>
+      </div>
+      <div class="card compact">
+        <h3>Quando usar em Gêmeos Digitais</h3>
+        <ul>
+          <li>grafos de sensores, ativos e dependências;</li>
+          <li>fluxos de energia, processo ou informação;</li>
+          <li>diagramas interativos e drill-down;</li>
+          <li>visualizações que não cabem em gráfico padrão.</li>
+        </ul>
+        <a class="demo-link" href="../d3/">Abrir demo D3.js →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <section class="slide">
+  <div class="content">
+    <div class="kicker">D3.js na aula</div>
+    <h2>Mostrar a cadeia dado → decisão</h2>
+    <div class="card" style="margin-top:28px">
+      <p class="lead"><strong>Ambiente físico → sensor → gateway → modelo → alerta → operador</strong></p>
+      <p>D3 ajuda a explicar que o Gêmeo Digital não é apenas o valor de um sensor. É uma rede de entidades, relações, modelos e ações.</p>
+      <div>
+        <span class="pill">entidades</span>
+        <span class="pill purple">dependências</span>
+        <span class="pill green">fluxo de informação</span>
+        <span class="pill red">alertas</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <section class="slide">
+  <div class="content">
+    <div class="tool-title"><div class="tool-icon">🎨</div><h2>p5.js</h2></div>
+    <p class="lead">Biblioteca JavaScript criativa para desenho, animação, interação e simulações em Canvas.</p>
+    <div class="two-pane compact">
+      <div class="card light">
+        <h3>O que é</h3>
+        <p>p5.js foi criada para tornar programação visual acessível. Ela facilita desenhar formas, animar partículas, capturar interação e simular comportamentos simples.</p>
+        <p>É muito útil para protótipos visuais e experiências didáticas.</p>
+      </div>
+      <div class="card compact">
+        <h3>Quando usar em Gêmeos Digitais</h3>
+        <ul>
+          <li>planta baixa interativa;</li>
+          <li>simulação de fluxo de pessoas, ar, calor ou partículas;</li>
+          <li>representação visual de zonas afetadas;</li>
+          <li>interfaces experimentais e educacionais.</li>
+        </ul>
+        <a class="demo-link" href="../p5/">Abrir p5.js →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <section class="slide">
+  <div class="content">
+    <div class="kicker">p5.js na aula</div>
+    <h2>Representar comportamento, não só números</h2>
+    <div class="mini-table">
+      <div class="row"><b>Demonstração</b><span>Planta 2D com salas, pessoas/partículas, ocupação e risco de CO₂.</span></div>
+      <div class="row"><b>Força</b><span>Boa para simular e comunicar dinâmica visual de forma intuitiva.</span></div>
+      <div class="row"><b>Limite</b><span>Não é a melhor opção para dashboards empresariais tradicionais ou mapas geográficos.</span></div>
+      <div class="row"><b>Mensagem</b><span>“Uma interface pode representar comportamento espacial e temporal, não apenas gráficos.”</span></div>
+    </div>
+  </div>
+</section>
+
+    <section class="slide">
+  <div class="content">
+    <div class="tool-title"><div class="tool-icon">🗺️</div><h2>Leaflet</h2></div>
+    <p class="lead">Biblioteca JavaScript leve para mapas interativos, marcadores, camadas e popups.</p>
+    <div class="two-pane compact">
+      <div class="card light">
+        <h3>O que é</h3>
+        <p>Leaflet é uma das bibliotecas mais populares para mapas web 2D. Integra mapas base, marcadores, polígonos, círculos, popups e plugins.</p>
+        <p>É simples, extensível e funciona bem em desktop e mobile.</p>
+      </div>
+      <div class="card compact">
+        <h3>Quando usar em Gêmeos Digitais</h3>
+        <ul>
+          <li>sensores distribuídos em campus ou cidade;</li>
+          <li>ativos em campo e inspeções;</li>
+          <li>zonas de risco, rotas e áreas afetadas;</li>
+          <li>interfaces de operação geográfica.</li>
+        </ul>
+        <a class="demo-link" href="../leaflet/">Abrir Leaflet →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <section class="slide">
+  <div class="content">
+    <div class="tool-title"><div class="tool-icon">🥽</div><h2>8th Wall / WebAR</h2></div>
+    <p class="lead">Stack para criar experiências AR e 3D no navegador, agora com componentes abertos em 8thwall.org.</p>
+    <div class="two-pane compact">
+      <div class="card light">
+        <h3>O que é</h3>
+        <p>8th Wall permite experiências WebAR sem instalar aplicativo nativo. A versão atual combina Studio Desktop, exemplos no GitHub e engine distribuída.</p>
+        <p>O projeto passou a ser aberto; o SLAM continua distribuído como binário.</p>
+      </div>
+      <div class="card compact">
+        <h3>Quando usar em Gêmeos Digitais</h3>
+        <ul>
+          <li>inspeção de ativo em campo;</li>
+          <li>overlay de status, risco e instruções;</li>
+          <li>manutenção assistida;</li>
+          <li>treinamento operacional no ambiente físico.</li>
+        </ul>
+        <a class="demo-link" href="../8thwall-digital-twin/">Abrir 8th Wall →</a>
+        <a class="demo-link" href="../8thwall-mock/">Plano B: mock →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <section class="slide">
+  <div class="content">
+    <div class="kicker">Boas práticas</div>
+    <h2>Interface deve reduzir incerteza</h2>
+    <div class="grid cols-2" style="margin-top:28px">
+      <div class="card compact">
+        <h3>Princípios úteis</h3>
+        <ul>
+          <li>visão geral primeiro;</li>
+          <li>zoom/filtro quando necessário;</li>
+          <li>detalhes sob demanda;</li>
+          <li>cores com significado operacional;</li>
+          <li>alerta sempre ligado a ação sugerida.</li>
+        </ul>
+      </div>
+      <div class="card compact">
+        <h3>Evitar</h3>
+        <ul>
+          <li>excesso de gráficos sem decisão associada;</li>
+          <li>cor decorativa confundida com status;</li>
+          <li>AR/3D usado só por impacto visual;</li>
+          <li>ocultar incerteza, latência ou qualidade do dado.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <section class="slide">
+  <div class="content">
+    <div class="kicker">Atividade final</div>
+    <h2>Projete a interface do seu Gêmeo Digital</h2>
+    <div class="card" style="margin-top:28px">
+      <ul>
+        <li>Quais dados precisam aparecer?</li>
+        <li>Quais KPIs indicam risco?</li>
+        <li>Precisa de dashboard, mapa, 2D, 3D ou AR?</li>
+        <li>Onde entram alertas e recomendações?</li>
+        <li>Uma interface imersiva agrega valor ou é excesso?</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+    <section class="slide">
+  <div class="content">
+    <div class="kicker">Comparação rápida</div>
+    <h2>Qual ferramenta escolher?</h2>
+    <div class="grid cols-3" style="margin-top:28px">
+      <div class="card decision"><h3 class="blue">Acompanhar operação</h3><p>Streamlit e Chart.js para KPIs, tendência e comparação.</p></div>
+      <div class="card decision"><h3 class="purple">Entender relações</h3><p>D3.js para entidades, dependências e fluxo de decisão.</p></div>
+      <div class="card decision"><h3 class="green">Simular comportamento</h3><p>p5.js para planta, partículas e dinâmica visual.</p></div>
+      <div class="card decision"><h3 class="yellow">Localizar problema</h3><p>Leaflet para sensores, zonas, rotas e território.</p></div>
+      <div class="card decision"><h3 class="red">Inspecionar em campo</h3><p>8th Wall/WebAR para sobrepor dados ao ativo físico.</p></div>
+      <div class="card decision"><h3 class="cyan">Pergunta-chave</h3><p>Qual decisão o usuário precisa tomar olhando para a interface?</p></div>
+    </div>
+  </div>
+</section>
+  </div>
   <div class="nav">
     <a href="../">Demos</a>
     <button id="prev">←</button>
