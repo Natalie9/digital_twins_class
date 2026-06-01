@@ -25,6 +25,7 @@ fetch('../data/sensors.json')
       },
       options: {
         responsive: true,
+        maintainAspectRatio: false,
         plugins: { legend: { position: 'bottom' } },
         scales: { y: { title: { display: true, text: 'ppm' } } },
       },
@@ -42,6 +43,7 @@ fetch('../data/sensors.json')
       },
       options: {
         responsive: true,
+        maintainAspectRatio: false,
         plugins: { legend: { display: false } },
       },
     });
@@ -60,6 +62,7 @@ fetch('../data/sensors.json')
       },
       options: {
         responsive: true,
+        maintainAspectRatio: false,
         plugins: { legend: { position: 'bottom' } },
       },
     });
