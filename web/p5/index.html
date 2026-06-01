@@ -7,16 +7,121 @@
   <link rel="stylesheet" href="../style.css" />
   <script src="https://cdn.jsdelivr.net/npm/p5@1.9.4/lib/p5.min.js"></script>
   <style>
-    #canvas-holder { border-radius: 18px; overflow: hidden; box-shadow: 0 8px 24px rgba(15,23,42,.08); }
+    .sim-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 320px;
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    #canvas-holder {
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(15,23,42,.08);
+      background: #f8fafc;
+    }
+
+    .control-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .mode-buttons {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    .mode-btn,
+    .reset-btn {
+      width: 100%;
+      border: 1px solid #cbd5e1;
+      border-radius: 14px;
+      padding: 10px 12px;
+      background: white;
+      color: #334155;
+      font-weight: 800;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .mode-btn.active {
+      background: #2563eb;
+      border-color: #2563eb;
+      color: white;
+    }
+
+    .reset-btn {
+      background: #111827;
+      border-color: #111827;
+      color: white;
+      text-align: center;
+    }
+
+    .metric {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 7px 0;
+      border-bottom: 1px solid #e5e7eb;
+      color: var(--muted);
+    }
+
+    .metric strong {
+      color: var(--text);
+    }
+
+    .action-box {
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 12px;
+      background: #eff6ff;
+      color: #1e3a8a;
+      line-height: 1.4;
+    }
+
+    @media (max-width: 920px) {
+      .sim-layout {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
   <main class="container">
     <a href="../">← voltar</a>
-    <h1>p5.js — Planta 2D e Simulação de Ocupação</h1>
-    <p>Clique em uma sala para aumentar ocupação. Pressione <strong>R</strong> para reiniciar.</p>
-    <div id="canvas-holder"></div>
+    <h1>p5.js — Simulador 2D de Conforto Ambiental</h1>
+    <p>
+      Selecione um modo e clique em uma sala. A demo mostra como ocupação,
+      ventilação e falha térmica alteram o estado do ambiente.
+    </p>
+
+    <section class="sim-layout">
+      <div id="canvas-holder"></div>
+
+      <aside class="control-panel">
+        <section class="panel">
+          <h2>Modo de interação</h2>
+          <div class="mode-buttons">
+            <button class="mode-btn active" data-mode="people">👥 + Pessoas</button>
+            <button class="mode-btn" data-mode="ventilate">🌬️ Ventilar</button>
+            <button class="mode-btn" data-mode="heat">🌡️ Falha térmica</button>
+          </div>
+          <p class="note">
+            Use os modos para demonstrar causas diferentes de alerta:
+            CO₂ alto ou temperatura alta.
+          </p>
+          <button id="resetSimulation" class="reset-btn">Resetar simulação</button>
+        </section>
+
+        <section id="selectedRoom" class="panel">
+          <h2>Sala selecionada</h2>
+          <p>Clique em uma sala na planta.</p>
+        </section>
+      </aside>
+    </section>
   </main>
-  <script src="sketch.js?v=3"></script>
+  <script src="sketch.js?v=4"></script>
 </body>
 </html>

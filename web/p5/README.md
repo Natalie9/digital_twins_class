@@ -7,8 +7,11 @@ Demonstra uma planta baixa simplificada com comportamento dinâmico.
 - canvas 2D;
 - animação de pessoas/partículas;
 - zonas com cores semânticas;
-- interação por clique;
-- relação entre ocupação e CO₂.
+- painel lateral da sala selecionada;
+- modos de interação: pessoas, ventilar e falha térmica;
+- botão de reset;
+- indicadores separados de temperatura e CO₂;
+- relação entre ocupação, CO₂, temperatura e status operacional.
 
 ## Uso em aula
 
