@@ -10,6 +10,7 @@ Demonstra uma planta baixa simplificada com comportamento dinâmico.
 - painel lateral da sala selecionada;
 - modos de interação: pessoas, ventilar e falha térmica;
 - botão de reset;
+- layout responsivo sem painel lateral competindo com o canvas;
 - indicadores separados de temperatura e CO₂;
 - relação entre ocupação, CO₂, temperatura e status operacional.
 

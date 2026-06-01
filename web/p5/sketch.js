@@ -4,6 +4,9 @@ let sensorData;
 let currentMode = 'people';
 let selectedRoomId = 'HVAC-A';
 
+const LOGICAL_WIDTH = 880;
+const LOGICAL_HEIGHT = 560;
+
 const statusLabel = {
   normal: 'Normal',
   atencao: 'Atenção',
@@ -33,10 +36,30 @@ function preload() {
 }
 
 function setup() {
-  const canvas = createCanvas(880, 560);
+  const size = getCanvasSize();
+  const canvas = createCanvas(size.width, size.height);
   canvas.parent('canvas-holder');
   setupControls();
   resetSimulation();
+}
+
+function windowResized() {
+  const size = getCanvasSize();
+  resizeCanvas(size.width, size.height);
+}
+
+function getCanvasSize() {
+  const holder = document.querySelector('#canvas-holder');
+  const available = holder ? holder.clientWidth : LOGICAL_WIDTH;
+  const width = Math.max(320, available);
+  return {
+    width,
+    height: Math.round(width * LOGICAL_HEIGHT / LOGICAL_WIDTH),
+  };
+}
+
+function canvasScale() {
+  return width / LOGICAL_WIDTH;
 }
 
 function setupControls() {
@@ -86,6 +109,8 @@ function resetSimulation() {
 
 function draw() {
   background('#f8fafc');
+  push();
+  scale(canvasScale());
   drawLegend();
 
   for (const room of rooms) {
@@ -106,6 +131,7 @@ function draw() {
   textSize(14);
   text('Clique em uma sala para aplicar o modo selecionado.', 40, 520);
   text('Exemplo: HVAC crítico por temperatura alta, mesmo com CO₂ baixo.', 40, 542);
+  pop();
 }
 
 function roomStatus(room) {
@@ -204,8 +230,11 @@ function modeLabel(mode) {
 }
 
 function mousePressed() {
+  const mX = mouseX / canvasScale();
+  const mY = mouseY / canvasScale();
+
   for (const room of rooms) {
-    if (mouseX > room.x && mouseX < room.x + room.w && mouseY > room.y && mouseY < room.y + room.h) {
+    if (mX > room.x && mX < room.x + room.w && mY > room.y && mY < room.y + room.h) {
       selectedRoomId = room.id;
       applyMode(room);
       updateSelectedPanel(room);
@@ -253,10 +282,12 @@ function updateSelectedPanel(room) {
   document.querySelector('#selectedRoom').innerHTML = `
     <h2>${room.name}</h2>
     <span class="badge ${status}">${statusLabel[status]}</span>
-    <div class="metric"><span>Temperatura</span><strong>${room.temp.toFixed(1)} °C</strong></div>
-    <div class="metric"><span>CO₂</span><strong>${Math.round(room.co2)} ppm</strong></div>
-    <div class="metric"><span>Ocupação</span><strong>${room.occ}</strong></div>
-    <div class="metric"><span>Energia</span><strong>${room.energy.toFixed(1)} kW</strong></div>
+    <div class="metric-grid">
+      <div class="metric"><span>Temperatura</span><strong>${room.temp.toFixed(1)} °C</strong></div>
+      <div class="metric"><span>CO₂</span><strong>${Math.round(room.co2)} ppm</strong></div>
+      <div class="metric"><span>Ocupação</span><strong>${room.occ}</strong></div>
+      <div class="metric"><span>Energia</span><strong>${room.energy.toFixed(1)} kW</strong></div>
+    </div>
     <div class="action-box"><strong>Diagnóstico:</strong><br>${diagnostic}</div>
   `;
 }
