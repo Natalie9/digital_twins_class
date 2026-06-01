@@ -56,12 +56,14 @@ Mensagem para a aula:
 
 Mostre:
 
-- nós do sistema;
+- legenda de temperatura e CO₂;
+- salas com estados operacionais;
 - sensores;
 - gateway;
 - modelo preditivo;
 - alerta;
-- operador.
+- operador;
+- caminho destacado quando uma sala é selecionada.
 
 Conceito associado:
 
@@ -115,9 +117,7 @@ Conceito associado:
 
 ## 6. 8th Wall/WebAR — interface de campo
 
-Acesse primeiro: <http://localhost:8080/8thwall-digital-twin/>
-
-Plano B sem câmera/SLAM: <http://localhost:8080/8thwall-mock/>
+Acesse: <http://localhost:8080/8thwall-digital-twin/>
 
 Mensagem para a aula:
 

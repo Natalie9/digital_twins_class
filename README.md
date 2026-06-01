@@ -14,7 +14,6 @@ Cenário único usado em todos os exemplos: um **edifício inteligente/laborató
 | p5.js | Simulação visual 2D | Planta baixa, zonas, ocupação e dispersão |
 | Leaflet | Mapa interativo | Ativos e sensores distribuídos no espaço |
 | 8th Wall | Overlay AR com engine-binary | Dados sobrepostos ao ativo físico |
-| WebAR mock | Cena conceitual sem engine AR | Plano B para demonstrar sem câmera/SLAM |
 
 ## Como executar com Docker
 
@@ -34,7 +33,6 @@ Depois acesse:
 - p5.js: <http://localhost:8080/p5/>
 - Leaflet: <http://localhost:8080/leaflet/>
 - 8th Wall AR: <http://localhost:8080/8thwall-digital-twin/>
-- Mock WebAR: <http://localhost:8080/8thwall-mock/>
 
 Para parar:
 
@@ -48,15 +46,14 @@ O 8th Wall mudou: o antigo hosted platform foi aposentado e o projeto passou a s
 
 Este pacote agora inclui:
 
-1. `web/8thwall-digital-twin`: demo AR usando `@8thwall/engine-binary`, `xrextras`, `landing-page` e A-Frame.
-2. `web/8thwall-mock`: demo conceitual executável mesmo sem câmera/SLAM.
-3. `web/8thwall-template`: template comentado para adaptação em projetos 8th Wall Studio.
+1. `web/8thwall-digital-twin`: demo AR usando `@8thwall/engine-binary`, `xrextras` e A-Frame.
+2. `web/8thwall-template`: template comentado para adaptação em projetos 8th Wall Studio.
 
 ## Roteiro sugerido para apresentação
 
 1. **Chart.js** — gráficos web básicos: tendência, comparação, distribuição.
 2. **Streamlit** — dashboard operacional rápido: KPIs, filtros e alertas.
-3. **D3.js** — visualização customizada: grafo de entidades e dependências.
+3. **D3.js** — visualização customizada: fluxo de decisão do dado ao operador.
 4. **p5.js** — simulação 2D: planta, ocupação e risco.
 5. **Leaflet** — visualização espacial: sensores em campus/cidade.
 6. **8th Wall/WebAR** — interface em campo: dados sobre o ativo físico.

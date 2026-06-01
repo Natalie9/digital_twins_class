@@ -15,11 +15,50 @@
       margin-bottom: 16px;
     }
 
-    .hint-list {
-      margin: 0;
-      padding-left: 20px;
-      color: var(--muted);
-      line-height: 1.55;
+    .decision-legend {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .legend-box {
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid #e5e7eb;
+      background: #f8fafc;
+    }
+
+    .legend-box h3 {
+      margin: 0 0 6px;
+      font-size: 18px;
+    }
+
+    .legend-box p {
+      margin: 0 0 10px;
+      font-size: 14px;
+    }
+
+    .legend-status {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .legend-note {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 14px;
+      background: #eff6ff;
+      color: #1e3a8a;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    @media (max-width: 700px) {
+      .decision-legend,
+      .legend-status {
+        grid-template-columns: 1fr;
+      }
     }
 
     #details h2 {
@@ -137,16 +176,32 @@
 
     <section class="intro">
       <div class="panel">
-        <p>
-          Esta visualização mostra a cadeia de decisão:
-          <strong>ambiente físico → sensor → gateway → modelo → alerta → operador</strong>.
-          Clique em uma sala para destacar seu fluxo.
-        </p>
-        <ul class="hint-list">
-          <li>As cores indicam o estado atual: normal, atenção ou crítico.</li>
-          <li>A espessura/destaque mostra o caminho do ambiente selecionado.</li>
-          <li>O objetivo é explicar a arquitetura informacional, não apenas valores isolados.</li>
-        </ul>
+        <div class="decision-legend">
+          <article class="legend-box">
+            <h3>🌡️ Temperatura</h3>
+            <p>Indica conforto térmico e possível sobrecarga do HVAC.</p>
+            <div class="legend-status">
+              <span class="scale-item normal">≤ 25,5 °C<br><b>normal</b></span>
+              <span class="scale-item atencao">&gt; 25,5 °C<br><b>atenção</b></span>
+              <span class="scale-item critico">&gt; 27,5 °C<br><b>crítico</b></span>
+            </div>
+          </article>
+
+          <article class="legend-box">
+            <h3>🌫️ CO₂ / ar poluído</h3>
+            <p>Representa qualidade do ar e necessidade de ventilação.</p>
+            <div class="legend-status">
+              <span class="scale-item normal">≤ 850 ppm<br><b>normal</b></span>
+              <span class="scale-item atencao">&gt; 850 ppm<br><b>atenção</b></span>
+              <span class="scale-item critico">&gt; 1200 ppm<br><b>crítico</b></span>
+            </div>
+          </article>
+        </div>
+
+        <div class="legend-note">
+          <strong>Como ler o D3:</strong> clique em uma sala para destacar o caminho do dado:
+          ambiente físico → sensor → gateway → modelo → alerta → operador.
+        </div>
       </div>
 
       <aside id="details" class="panel">
