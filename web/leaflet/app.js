@@ -37,8 +37,7 @@ const light = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{
   attribution: '&copy; OpenStreetMap &copy; CARTO',
 });
 
-fetch('../data/sensors.json')
-  .then((r) => r.json())
+loadSensorData()
   .then((data) => {
     const latest = [...data.latest].sort((a, b) => {
       const priority = statusPriority[b.status] - statusPriority[a.status];
@@ -286,4 +285,38 @@ fetch('../data/sensors.json')
         <small>Clique no painel lateral para priorizar inspeção.</small>
       `;
     }
+  })
+  .catch((error) => {
+    console.error('Erro ao inicializar o mapa Leaflet:', error);
+    document.querySelector('#selectedSensor').innerHTML = `
+      <h2>Erro ao carregar mapa</h2>
+      <p>Abra esta demo via servidor HTTP/HTTPS, não diretamente como arquivo local.</p>
+      <p><code>http://localhost:8080/leaflet/</code></p>
+    `;
   });
+
+async function loadSensorData() {
+  const urls = ['../data/sensors.json', '/data/sensors.json'];
+
+  for (const url of urls) {
+    try {
+      const response = await fetch(url, { cache: 'no-store' });
+      if (!response.ok) throw new Error(`${url}: ${response.status}`);
+      const data = await response.json();
+      if (Array.isArray(data.latest) && data.latest.length) return data;
+    } catch (error) {
+      console.warn(`Não foi possível carregar ${url}`, error);
+    }
+  }
+
+  console.warn('Usando dados embutidos de fallback para a demo Leaflet.');
+  return {
+    latest: [
+      { room_id: 'LAB-01', room_name: 'Laboratório IA', temperature_c: 24.6, co2_ppm: 830, occupancy: 10, energy_kw: 5.7, status: 'normal', lat: -23.55955, lng: -46.73192 },
+      { room_id: 'LAB-02', room_name: 'Laboratório Robótica', temperature_c: 25.9, co2_ppm: 960, occupancy: 18, energy_kw: 7.2, status: 'atencao', lat: -23.55910, lng: -46.73125 },
+      { room_id: 'SALA-12', room_name: 'Sala de Aula 12', temperature_c: 26.2, co2_ppm: 1120, occupancy: 23, energy_kw: 8.1, status: 'atencao', lat: -23.55880, lng: -46.73230 },
+      { room_id: 'HVAC-A', room_name: 'Casa de Máquinas A', temperature_c: 27.8, co2_ppm: 890, occupancy: 5, energy_kw: 10.4, status: 'critico', lat: -23.55985, lng: -46.73265 },
+      { room_id: 'AUD-01', room_name: 'Auditório', temperature_c: 27.1, co2_ppm: 1320, occupancy: 42, energy_kw: 12.8, status: 'critico', lat: -23.55835, lng: -46.73170 },
+    ],
+  };
+}
