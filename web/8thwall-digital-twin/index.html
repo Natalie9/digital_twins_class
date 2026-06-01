@@ -54,11 +54,24 @@
     AFRAME.registerComponent('digital-twin-placer', {
       init() {
         this.placed = false
-        this.sceneEl.addEventListener('click', event => {
-          if (!event.detail || !event.detail.intersection) return
-          const point = event.detail.intersection.point
-          this.placeAsset(point)
-        })
+        this.scene = this.el.sceneEl || this.el
+
+        const bindGroundClick = () => {
+          const ground = document.querySelector('#ground')
+          if (!ground) return
+
+          ground.addEventListener('click', event => {
+            if (!event.detail || !event.detail.intersection) return
+            const point = event.detail.intersection.point
+            this.placeAsset(point)
+          })
+        }
+
+        if (this.scene.hasLoaded) {
+          bindGroundClick()
+        } else {
+          this.scene.addEventListener('loaded', bindGroundClick)
+        }
       },
       placeAsset(point) {
         const old = document.querySelector('#asset-root')
@@ -80,7 +93,7 @@
           </a-text>
           <a-sphere position="0.38 0.95 0.38" radius="0.06" color="${color}" animation="property: scale; dir: alternate; dur: 650; loop: true; to: 1.5 1.5 1.5"></a-sphere>
         `
-        this.sceneEl.appendChild(root)
+        this.scene.appendChild(root)
         document.querySelector('.topbar span').textContent = 'Ativo posicionado — toque novamente para mover'
       },
     })
