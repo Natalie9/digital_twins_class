@@ -8,7 +8,8 @@
     :root {
       --bg: #0f172a;
       --panel: #111827;
-      --card: #ffffff;
+      --card: rgba(255,255,255,.08);
+      --card-border: rgba(255,255,255,.14);
       --text: #e5e7eb;
       --muted: #94a3b8;
       --blue: #60a5fa;
@@ -16,6 +17,7 @@
       --yellow: #facc15;
       --red: #f87171;
       --purple: #c084fc;
+      --cyan: #22d3ee;
     }
 
     * { box-sizing: border-box; }
@@ -23,9 +25,9 @@
     body {
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background:
-        radial-gradient(circle at 15% 20%, rgba(37, 99, 235, .28), transparent 28%),
-        radial-gradient(circle at 85% 10%, rgba(192, 132, 252, .22), transparent 26%),
-        radial-gradient(circle at 70% 90%, rgba(34, 197, 94, .18), transparent 24%),
+        radial-gradient(circle at 15% 20%, rgba(37, 99, 235, .30), transparent 28%),
+        radial-gradient(circle at 88% 8%, rgba(192, 132, 252, .22), transparent 25%),
+        radial-gradient(circle at 75% 88%, rgba(34, 197, 94, .18), transparent 24%),
         var(--bg);
       color: var(--text);
     }
@@ -35,40 +37,42 @@
       position: absolute;
       inset: 0;
       display: none;
-      padding: 5.5vh 7vw;
+      padding: 5.4vh 6.5vw;
       align-items: center;
       justify-content: center;
     }
     .slide.active { display: flex; }
-    .content { width: min(1180px, 100%); }
+    .content { width: min(1220px, 100%); }
 
     .kicker {
       color: var(--blue);
       text-transform: uppercase;
       letter-spacing: .13em;
       font-weight: 850;
-      font-size: clamp(13px, 1.2vw, 18px);
+      font-size: clamp(12px, 1.1vw, 17px);
       margin-bottom: 14px;
     }
 
     h1, h2 { margin: 0; line-height: 1.03; }
-    h1 { font-size: clamp(44px, 7.3vw, 96px); letter-spacing: -0.06em; }
-    h2 { font-size: clamp(36px, 5.2vw, 72px); letter-spacing: -0.045em; }
-    h3 { margin: 0 0 8px; font-size: clamp(22px, 2.2vw, 34px); }
-    p, li { font-size: clamp(20px, 2vw, 31px); line-height: 1.3; color: var(--muted); }
-    p.lead { font-size: clamp(24px, 2.7vw, 40px); max-width: 980px; color: #dbeafe; }
+    h1 { font-size: clamp(44px, 7vw, 96px); letter-spacing: -0.06em; }
+    h2 { font-size: clamp(34px, 4.8vw, 70px); letter-spacing: -0.045em; }
+    h3 { margin: 0 0 8px; font-size: clamp(21px, 2vw, 32px); }
+    h4 { margin: 0 0 8px; font-size: clamp(17px, 1.45vw, 22px); color: #dbeafe; }
+    p, li { font-size: clamp(18px, 1.7vw, 28px); line-height: 1.34; color: var(--muted); }
+    p.lead { font-size: clamp(23px, 2.4vw, 38px); max-width: 1000px; color: #dbeafe; }
     strong { color: white; }
+    small { color: #cbd5e1; }
 
-    .grid { display: grid; gap: 20px; }
+    .grid { display: grid; gap: 18px; }
     .grid.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .grid.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .grid.cols-6 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+    .grid.cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 
     .card {
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.14);
+      background: var(--card);
+      border: 1px solid var(--card-border);
       border-radius: 26px;
-      padding: 24px;
+      padding: 22px;
       box-shadow: 0 24px 60px rgba(0,0,0,.18);
       backdrop-filter: blur(10px);
     }
@@ -85,19 +89,13 @@
       background: rgba(96,165,250,.14);
       color: #bfdbfe;
       font-weight: 800;
-      font-size: clamp(14px, 1.4vw, 18px);
+      font-size: clamp(13px, 1.2vw, 18px);
       margin: 6px 6px 0 0;
     }
-
-    .tech {
-      min-height: 190px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .tech .icon { font-size: clamp(28px, 3vw, 46px); }
-    .tech h3 { font-size: clamp(18px, 1.65vw, 28px); }
-    .tech p { font-size: clamp(15px, 1.25vw, 19px); margin: 0; }
+    .pill.green { background: rgba(34,197,94,.14); color: #bbf7d0; }
+    .pill.yellow { background: rgba(250,204,21,.14); color: #fef08a; }
+    .pill.red { background: rgba(248,113,113,.14); color: #fecaca; }
+    .pill.purple { background: rgba(192,132,252,.14); color: #e9d5ff; }
 
     .flow {
       display: grid;
@@ -112,31 +110,55 @@
       border-radius: 22px;
       background: rgba(255,255,255,.1);
       border: 1px solid rgba(255,255,255,.16);
-      font-size: clamp(15px, 1.6vw, 24px);
+      font-size: clamp(15px, 1.45vw, 23px);
       font-weight: 850;
     }
-    .arrow { color: var(--blue); font-size: 34px; text-align: center; }
 
     .two-pane {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 34px;
-      align-items: center;
+      grid-template-columns: .92fr 1.08fr;
+      gap: 28px;
+      align-items: stretch;
+      margin-top: 28px;
     }
+    .tool-title { display: flex; gap: 14px; align-items: center; margin-bottom: 10px; }
+    .tool-icon { font-size: clamp(34px, 4vw, 58px); line-height: 1; }
+    .tool-title h2 { font-size: clamp(34px, 4.5vw, 66px); }
+
+    .compact p, .compact li { font-size: clamp(16px, 1.32vw, 22px); }
+    .compact ul { padding-left: 22px; margin: 10px 0 0; }
 
     .demo-link {
-      display: block;
+      display: inline-block;
       text-decoration: none;
-      color: inherit;
-      padding: 18px 20px;
-      border-radius: 18px;
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.12);
-      margin-top: 10px;
-      font-size: clamp(18px, 1.6vw, 24px);
-      font-weight: 800;
+      color: white;
+      padding: 13px 16px;
+      border-radius: 15px;
+      background: rgba(96,165,250,.18);
+      border: 1px solid rgba(96,165,250,.34);
+      margin: 8px 8px 0 0;
+      font-size: clamp(16px, 1.25vw, 21px);
+      font-weight: 850;
     }
-    .demo-link:hover { background: rgba(96,165,250,.18); }
+    .demo-link:hover { background: rgba(96,165,250,.30); }
+    .demo-link.dark { color: #2563eb; background: rgba(37,99,235,.08); border-color: rgba(37,99,235,.18); }
+
+    .mini-table { display: grid; gap: 10px; margin-top: 18px; }
+    .row {
+      display: grid;
+      grid-template-columns: 185px 1fr;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      align-items: center;
+    }
+    .row b { color: #fff; }
+    .row span { color: #cbd5e1; font-size: clamp(15px, 1.18vw, 20px); line-height: 1.28; }
+
+    .decision { min-height: 160px; }
+    .decision p { font-size: clamp(15px, 1.25vw, 20px); margin-bottom: 0; }
 
     .footer {
       position: fixed;
@@ -181,27 +203,30 @@
       font-weight: 800;
     }
 
-    .note { font-size: clamp(16px, 1.4vw, 22px); color: #cbd5e1; }
+    .note { font-size: clamp(15px, 1.25vw, 20px); color: #cbd5e1; }
     .blue { color: var(--blue); }
     .green { color: var(--green); }
     .yellow { color: var(--yellow); }
     .red { color: var(--red); }
     .purple { color: var(--purple); }
+    .cyan { color: var(--cyan); }
 
     @media (max-width: 900px) {
-      .slide { padding: 6vh 5vw; align-items: flex-start; overflow-y: auto; }
-      .grid.cols-2, .grid.cols-3, .grid.cols-6, .two-pane, .flow { grid-template-columns: 1fr; }
-      .arrow { display: none; }
-      .tech { min-height: auto; }
+      html, body { overflow: auto; }
+      .slide { padding: 6vh 5vw 10vh; align-items: flex-start; overflow-y: auto; }
+      .grid.cols-2, .grid.cols-3, .grid.cols-4, .two-pane, .flow { grid-template-columns: 1fr; }
+      .row { grid-template-columns: 1fr; }
       .footer { display: none; }
+      .nav { top: auto; bottom: 14px; left: 14px; right: 14px; justify-content: center; }
     }
 
     @media print {
       html, body { height: auto; overflow: auto; background: white; color: black; }
       .slide { position: relative; display: flex !important; min-height: 100vh; page-break-after: always; background: white; color: black; }
       .nav, .footer, .progress { display: none; }
-      .card { border: 1px solid #ddd; background: white; color: black; box-shadow: none; }
-      p, li { color: #333; }
+      .card, .row { border: 1px solid #ddd; background: white; color: black; box-shadow: none; }
+      p, li, .row span { color: #333; }
+      strong, .row b { color: #000; }
     }
   </style>
 </head>
@@ -211,13 +236,13 @@
       <div class="content">
         <div class="kicker">Gêmeos Digitais</div>
         <h1>Visualização e Interface</h1>
-        <p class="lead">Como transformar dados, modelos e alertas em uma interface que apoia decisão.</p>
+        <p class="lead">Como transformar sensores, modelos e alertas em interfaces que apoiam decisões.</p>
         <div>
           <span class="pill">Dashboards</span>
-          <span class="pill">Visualização 2D</span>
-          <span class="pill">Mapas</span>
-          <span class="pill">AR/WebAR</span>
-          <span class="pill">Simulação</span>
+          <span class="pill green">Visualização 2D</span>
+          <span class="pill yellow">Mapas</span>
+          <span class="pill purple">Visualização customizada</span>
+          <span class="pill red">AR/WebAR</span>
         </div>
       </div>
     </section>
@@ -227,8 +252,14 @@
         <div class="kicker">Ideia central</div>
         <h2>A interface ideal depende da decisão</h2>
         <div class="grid cols-2" style="margin-top:34px">
-          <div class="card"><h3>Não basta mostrar dados</h3><p>É preciso responder: <strong>o que está acontecendo?</strong>, <strong>onde?</strong>, <strong>qual o risco?</strong> e <strong>o que fazer?</strong></p></div>
-          <div class="card"><h3>O usuário precisa agir</h3><p>A visualização deve aproximar dados, modelo, operação e tomada de decisão.</p></div>
+          <div class="card">
+            <h3>Não é só “mostrar dados”</h3>
+            <p>Uma boa interface responde: <strong>o que está acontecendo?</strong>, <strong>onde?</strong>, <strong>qual o risco?</strong> e <strong>o que fazer?</strong></p>
+          </div>
+          <div class="card">
+            <h3>É uma camada operacional</h3>
+            <p>Ela conecta dados, modelo, contexto físico e usuário para apoiar monitoramento, diagnóstico, simulação ou ação.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -251,33 +282,38 @@
 
     <section class="slide">
       <div class="content">
-        <div class="kicker">Bibliotecas demonstradas</div>
-        <h2>Cada ferramenta responde uma pergunta diferente</h2>
+        <div class="kicker">Roteiro da demonstração</div>
+        <h2>Da tela analítica à interface de campo</h2>
         <div class="grid cols-3" style="margin-top:28px">
-          <div class="card tech"><div class="icon">📊</div><h3>Chart.js</h3><p>Quais são os valores e tendências?</p></div>
-          <div class="card tech"><div class="icon">🐍</div><h3>Streamlit</h3><p>Como montar um dashboard analítico rápido?</p></div>
-          <div class="card tech"><div class="icon">🔗</div><h3>D3.js</h3><p>Como explicar o fluxo de decisão?</p></div>
-          <div class="card tech"><div class="icon">🎨</div><h3>p5.js</h3><p>Como simular comportamento em 2D?</p></div>
-          <div class="card tech"><div class="icon">🗺️</div><h3>Leaflet</h3><p>Onde está o problema e qual rota seguir?</p></div>
-          <div class="card tech"><div class="icon">🥽</div><h3>8th Wall</h3><p>Como sobrepor dados ao ativo físico?</p></div>
+          <div class="card decision"><h3>1. Gráficos</h3><p><strong>Chart.js</strong> para tendências e comparações rápidas.</p></div>
+          <div class="card decision"><h3>2. Dashboard</h3><p><strong>Streamlit</strong> para KPIs, filtros, tabelas e recomendações.</p></div>
+          <div class="card decision"><h3>3. Relações</h3><p><strong>D3.js</strong> para explicar entidades e fluxo de decisão.</p></div>
+          <div class="card decision"><h3>4. Simulação 2D</h3><p><strong>p5.js</strong> para comportamento, planta baixa e zonas.</p></div>
+          <div class="card decision"><h3>5. Espaço</h3><p><strong>Leaflet</strong> para sensores distribuídos em campus/cidade.</p></div>
+          <div class="card decision"><h3>6. Campo</h3><p><strong>8th Wall</strong> para sobrepor dados ao ativo físico.</p></div>
         </div>
       </div>
     </section>
 
     <section class="slide">
       <div class="content">
-        <div class="kicker">Dashboard e gráficos</div>
-        <h2>Monitorar, comparar e diagnosticar</h2>
-        <div class="two-pane">
+        <div class="tool-title"><div class="tool-icon">📊</div><h2>Chart.js</h2></div>
+        <p class="lead">Biblioteca JavaScript para criar gráficos responsivos em páginas web com pouca configuração.</p>
+        <div class="two-pane compact">
           <div class="card light">
-            <h3>Chart.js</h3>
-            <p>Gráficos web simples: linha, barras e rosca para mostrar tendência, comparação e distribuição de estados.</p>
-            <a class="demo-link" style="color:#2563eb" href="../chartjs/">Abrir demo Chart.js →</a>
+            <h3>O que é</h3>
+            <p>Chart.js entrega componentes prontos para gráficos comuns: linha, barra, rosca, radar, dispersão e área.</p>
+            <p>É indicada quando a aplicação web precisa incorporar visualizações tradicionais de forma rápida e leve.</p>
           </div>
-          <div class="card light">
-            <h3>Streamlit</h3>
-            <p>Dashboard operacional em Python com KPIs, filtros, alertas e recomendações.</p>
-            <a class="demo-link" style="color:#2563eb" href="http://localhost:8501">Abrir Streamlit →</a>
+          <div class="card compact">
+            <h3>Quando usar em Gêmeos Digitais</h3>
+            <ul>
+              <li>séries temporais de sensores;</li>
+              <li>comparação entre ativos ou ambientes;</li>
+              <li>distribuição de estados;</li>
+              <li>painéis web simples integrados a Flask, Node, Django etc.</li>
+            </ul>
+            <a class="demo-link" href="../chartjs/">Abrir demo Chart.js →</a>
           </div>
         </div>
       </div>
@@ -285,29 +321,150 @@
 
     <section class="slide">
       <div class="content">
-        <div class="kicker">Visualização customizada</div>
-        <h2>D3.js mostra a cadeia de decisão</h2>
+        <div class="kicker">Chart.js na aula</div>
+        <h2>Monitorar valores e tendências</h2>
+        <div class="mini-table">
+          <div class="row"><b>Demonstração</b><span>CO₂ ao longo do tempo, energia por ambiente e distribuição de estados.</span></div>
+          <div class="row"><b>Força</b><span>Baixa barreira de entrada; ótimo para gráficos padrão e dashboards web simples.</span></div>
+          <div class="row"><b>Limite</b><span>Menos adequado quando a visualização precisa fugir muito dos formatos tradicionais.</span></div>
+          <div class="row"><b>Mensagem</b><span>“Quando preciso incorporar gráficos simples em uma página web, Chart.js resolve rapidamente.”</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="content">
+        <div class="tool-title"><div class="tool-icon">🐍</div><h2>Streamlit</h2></div>
+        <p class="lead">Framework Python para transformar scripts de análise de dados em aplicações web interativas.</p>
+        <div class="two-pane compact">
+          <div class="card light">
+            <h3>O que é</h3>
+            <p>Streamlit permite criar interfaces com poucas linhas de Python: métricas, filtros, tabelas, gráficos, upload de arquivos e layout em colunas.</p>
+            <p>É muito usado para prototipação, ciência de dados, ML e dashboards internos.</p>
+          </div>
+          <div class="card compact">
+            <h3>Quando usar em Gêmeos Digitais</h3>
+            <ul>
+              <li>prototipar dashboard operacional rapidamente;</li>
+              <li>explorar dados de sensores e modelos preditivos;</li>
+              <li>criar interfaces para especialistas técnicos;</li>
+              <li>validar KPIs antes de desenvolver produto final.</li>
+            </ul>
+            <a class="demo-link" href="http://localhost:8501">Abrir Streamlit →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="content">
+        <div class="kicker">Streamlit na aula</div>
+        <h2>Dashboard operacional rápido</h2>
+        <div class="mini-table">
+          <div class="row"><b>Demonstração</b><span>Filtros por ambiente, KPIs, série temporal, tabela de estado e recomendações.</span></div>
+          <div class="row"><b>Força</b><span>Excelente produtividade quando os dados já estão em Python/Pandas.</span></div>
+          <div class="row"><b>Limite</b><span>Menos controle visual fino do que aplicações front-end customizadas.</span></div>
+          <div class="row"><b>Mensagem</b><span>“Com Python, consigo montar um protótipo de interface analítica para decisão em poucos minutos.”</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="content">
+        <div class="tool-title"><div class="tool-icon">🔗</div><h2>D3.js</h2></div>
+        <p class="lead">Biblioteca JavaScript para visualização de dados customizada, baseada em SVG, Canvas e DOM.</p>
+        <div class="two-pane compact">
+          <div class="card light">
+            <h3>O que é</h3>
+            <p>D3 não é apenas uma biblioteca de gráficos prontos. Ela oferece primitivas para mapear dados em elementos visuais.</p>
+            <p>É ideal quando a forma da visualização precisa ser desenhada conforme o problema.</p>
+          </div>
+          <div class="card compact">
+            <h3>Quando usar em Gêmeos Digitais</h3>
+            <ul>
+              <li>grafos de sensores, ativos e dependências;</li>
+              <li>fluxos de energia, processo ou informação;</li>
+              <li>diagramas interativos e drill-down;</li>
+              <li>visualizações que não cabem em gráfico padrão.</li>
+            </ul>
+            <a class="demo-link" href="../d3/">Abrir demo D3.js →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="content">
+        <div class="kicker">D3.js na aula</div>
+        <h2>Mostrar a cadeia dado → decisão</h2>
         <div class="card" style="margin-top:28px">
           <p class="lead"><strong>Ambiente físico → sensor → gateway → modelo → alerta → operador</strong></p>
-          <p>O objetivo é explicar a arquitetura informacional do Gêmeo Digital: não apenas o valor do sensor, mas como esse valor vira uma ação.</p>
-          <a class="demo-link" href="../d3/">Abrir demo D3.js →</a>
+          <p>D3 ajuda a explicar que o Gêmeo Digital não é apenas o valor de um sensor. É uma rede de entidades, relações, modelos e ações.</p>
+          <div>
+            <span class="pill">entidades</span>
+            <span class="pill purple">dependências</span>
+            <span class="pill green">fluxo de informação</span>
+            <span class="pill red">alertas</span>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="slide">
       <div class="content">
-        <div class="kicker">Visualização 2D e espacial</div>
-        <h2>Quando posição e contexto importam</h2>
-        <div class="two-pane">
-          <div class="card">
-            <h3>p5.js</h3>
-            <p>Planta baixa, partículas e zonas coloridas para representar ocupação e risco de CO₂.</p>
+        <div class="tool-title"><div class="tool-icon">🎨</div><h2>p5.js</h2></div>
+        <p class="lead">Biblioteca JavaScript criativa para desenho, animação, interação e simulações em Canvas.</p>
+        <div class="two-pane compact">
+          <div class="card light">
+            <h3>O que é</h3>
+            <p>p5.js foi criada para tornar programação visual acessível. Ela facilita desenhar formas, animar partículas, capturar interação e simular comportamentos simples.</p>
+            <p>É muito útil para protótipos visuais e experiências didáticas.</p>
+          </div>
+          <div class="card compact">
+            <h3>Quando usar em Gêmeos Digitais</h3>
+            <ul>
+              <li>planta baixa interativa;</li>
+              <li>simulação de fluxo de pessoas, ar, calor ou partículas;</li>
+              <li>representação visual de zonas afetadas;</li>
+              <li>interfaces experimentais e educacionais.</li>
+            </ul>
             <a class="demo-link" href="../p5/">Abrir p5.js →</a>
           </div>
-          <div class="card">
-            <h3>Leaflet</h3>
-            <p>Mapa operacional com sensores, áreas de risco, filtros, prioridade e rota de inspeção.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="content">
+        <div class="kicker">p5.js na aula</div>
+        <h2>Representar comportamento, não só números</h2>
+        <div class="mini-table">
+          <div class="row"><b>Demonstração</b><span>Planta 2D com salas, pessoas/partículas, ocupação e risco de CO₂.</span></div>
+          <div class="row"><b>Força</b><span>Boa para simular e comunicar dinâmica visual de forma intuitiva.</span></div>
+          <div class="row"><b>Limite</b><span>Não é a melhor opção para dashboards empresariais tradicionais ou mapas geográficos.</span></div>
+          <div class="row"><b>Mensagem</b><span>“Uma interface pode representar comportamento espacial e temporal, não apenas gráficos.”</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="content">
+        <div class="tool-title"><div class="tool-icon">🗺️</div><h2>Leaflet</h2></div>
+        <p class="lead">Biblioteca JavaScript leve para mapas interativos, marcadores, camadas e popups.</p>
+        <div class="two-pane compact">
+          <div class="card light">
+            <h3>O que é</h3>
+            <p>Leaflet é uma das bibliotecas mais populares para mapas web 2D. Integra mapas base, marcadores, polígonos, círculos, popups e plugins.</p>
+            <p>É simples, extensível e funciona bem em desktop e mobile.</p>
+          </div>
+          <div class="card compact">
+            <h3>Quando usar em Gêmeos Digitais</h3>
+            <ul>
+              <li>sensores distribuídos em campus ou cidade;</li>
+              <li>ativos em campo e inspeções;</li>
+              <li>zonas de risco, rotas e áreas afetadas;</li>
+              <li>interfaces de operação geográfica.</li>
+            </ul>
             <a class="demo-link" href="../leaflet/">Abrir Leaflet →</a>
           </div>
         </div>
@@ -316,12 +473,51 @@
 
     <section class="slide">
       <div class="content">
-        <div class="kicker">Interface de campo</div>
-        <h2>AR aproxima dados do ativo físico</h2>
-        <div class="card" style="margin-top:28px">
-          <p class="lead">Com 8th Wall/WebAR, o técnico pode apontar o celular para uma máquina e ver status, temperatura, vibração, CO₂ e ação recomendada.</p>
-          <a class="demo-link" href="../8thwall-digital-twin/">Abrir demo 8th Wall →</a>
-          <a class="demo-link" href="../8thwall-mock/">Abrir mock WebAR →</a>
+        <div class="kicker">Leaflet na aula</div>
+        <h2>Quando localização vira parte da decisão</h2>
+        <div class="mini-table">
+          <div class="row"><b>Demonstração</b><span>Mapa com sensores, popups operacionais, zonas de atenção e camadas.</span></div>
+          <div class="row"><b>Força</b><span>Excelente para “onde está o problema?” e “qual local priorizar?”.</span></div>
+          <div class="row"><b>Limite</b><span>Não substitui visualizações 3D, BIM ou análises geoespaciais mais pesadas.</span></div>
+          <div class="row"><b>Mensagem</b><span>“Quando ativos estão distribuídos no território, o mapa é a interface natural.”</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="content">
+        <div class="tool-title"><div class="tool-icon">🥽</div><h2>8th Wall / WebAR</h2></div>
+        <p class="lead">Stack para criar experiências AR e 3D no navegador, agora com componentes abertos em 8thwall.org.</p>
+        <div class="two-pane compact">
+          <div class="card light">
+            <h3>O que é</h3>
+            <p>8th Wall permite experiências WebAR sem instalar aplicativo nativo. A versão atual combina Studio Desktop, exemplos no GitHub e engine distribuída.</p>
+            <p>O projeto passou a ser aberto; o SLAM continua distribuído como binário.</p>
+          </div>
+          <div class="card compact">
+            <h3>Quando usar em Gêmeos Digitais</h3>
+            <ul>
+              <li>inspeção de ativo em campo;</li>
+              <li>overlay de status, risco e instruções;</li>
+              <li>manutenção assistida;</li>
+              <li>treinamento operacional no ambiente físico.</li>
+            </ul>
+            <a class="demo-link" href="../8thwall-digital-twin/">Abrir 8th Wall →</a>
+            <a class="demo-link" href="../8thwall-mock/">Plano B: mock →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="content">
+        <div class="kicker">8th Wall na aula</div>
+        <h2>Do dashboard remoto à interface no ativo</h2>
+        <div class="mini-table">
+          <div class="row"><b>Demonstração</b><span>Posicionar um HVAC em AR e visualizar painel com temperatura, vibração, CO₂ e ação recomendada.</span></div>
+          <div class="row"><b>Força</b><span>A informação aparece no contexto físico, reduzindo esforço de interpretação em campo.</span></div>
+          <div class="row"><b>Cuidados</b><span>HTTPS, câmera, compatibilidade do dispositivo, precisão espacial, latência e excesso visual.</span></div>
+          <div class="row"><b>Mensagem</b><span>“AR agrega valor quando a decisão precisa ser tomada olhando para o ativo físico.”</span></div>
         </div>
       </div>
     </section>
@@ -329,14 +525,42 @@
     <section class="slide">
       <div class="content">
         <div class="kicker">Comparação rápida</div>
-        <h2>Qual interface escolher?</h2>
+        <h2>Qual ferramenta escolher?</h2>
+        <div class="grid cols-3" style="margin-top:28px">
+          <div class="card decision"><h3 class="blue">Acompanhar operação</h3><p>Streamlit e Chart.js para KPIs, tendência e comparação.</p></div>
+          <div class="card decision"><h3 class="purple">Entender relações</h3><p>D3.js para entidades, dependências e fluxo de decisão.</p></div>
+          <div class="card decision"><h3 class="green">Simular comportamento</h3><p>p5.js para planta, partículas e dinâmica visual.</p></div>
+          <div class="card decision"><h3 class="yellow">Localizar problema</h3><p>Leaflet para sensores, zonas, rotas e território.</p></div>
+          <div class="card decision"><h3 class="red">Inspecionar em campo</h3><p>8th Wall/WebAR para sobrepor dados ao ativo físico.</p></div>
+          <div class="card decision"><h3 class="cyan">Pergunta-chave</h3><p>Qual decisão o usuário precisa tomar olhando para a interface?</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="content">
+        <div class="kicker">Boas práticas</div>
+        <h2>Interface deve reduzir incerteza</h2>
         <div class="grid cols-2" style="margin-top:28px">
-          <div class="card"><h3 class="blue">Acompanhar operação</h3><p>Streamlit, Chart.js</p></div>
-          <div class="card"><h3 class="purple">Entender relações</h3><p>D3.js</p></div>
-          <div class="card"><h3 class="green">Simular comportamento</h3><p>p5.js</p></div>
-          <div class="card"><h3 class="yellow">Localizar problema</h3><p>Leaflet</p></div>
-          <div class="card"><h3 class="red">Inspecionar em campo</h3><p>8th Wall / WebAR</p></div>
-          <div class="card"><h3>Fechamento</h3><p>A pergunta certa é: <strong>qual decisão o usuário precisa tomar?</strong></p></div>
+          <div class="card compact">
+            <h3>Princípios úteis</h3>
+            <ul>
+              <li>visão geral primeiro;</li>
+              <li>zoom/filtro quando necessário;</li>
+              <li>detalhes sob demanda;</li>
+              <li>cores com significado operacional;</li>
+              <li>alerta sempre ligado a ação sugerida.</li>
+            </ul>
+          </div>
+          <div class="card compact">
+            <h3>Evitar</h3>
+            <ul>
+              <li>excesso de gráficos sem decisão associada;</li>
+              <li>cor decorativa confundida com status;</li>
+              <li>AR/3D usado só por impacto visual;</li>
+              <li>ocultar incerteza, latência ou qualidade do dado.</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -353,6 +577,22 @@
             <li>Onde entram alertas e recomendações?</li>
             <li>Uma interface imersiva agrega valor ou é excesso?</li>
           </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="content">
+        <div class="kicker">Fechamento</div>
+        <h2>A tecnologia vem depois da decisão</h2>
+        <p class="lead">Primeiro defina a tarefa do usuário: acompanhar, diagnosticar, localizar, simular ou interagir com o sistema físico.</p>
+        <div style="margin-top:24px">
+          <a class="demo-link" href="../chartjs/">Chart.js</a>
+          <a class="demo-link" href="http://localhost:8501">Streamlit</a>
+          <a class="demo-link" href="../d3/">D3.js</a>
+          <a class="demo-link" href="../p5/">p5.js</a>
+          <a class="demo-link" href="../leaflet/">Leaflet</a>
+          <a class="demo-link" href="../8thwall-digital-twin/">8th Wall</a>
         </div>
       </div>
     </section>
