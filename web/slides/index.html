@@ -160,6 +160,31 @@
     .decision { min-height: 160px; }
     .decision p { font-size: clamp(15px, 1.25vw, 20px); margin-bottom: 0; }
 
+    .qr-slide {
+      display: grid;
+      grid-template-columns: .92fr minmax(280px, 420px);
+      gap: 38px;
+      align-items: center;
+      margin-top: 28px;
+    }
+    .qr-box {
+      background: white;
+      border-radius: 30px;
+      padding: 22px;
+      box-shadow: 0 28px 70px rgba(0,0,0,.28);
+    }
+    .qr-box img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 18px;
+    }
+    .qr-caption {
+      margin-top: 14px;
+      color: #cbd5e1;
+      font-size: clamp(15px, 1.2vw, 20px);
+    }
+
     .metric-legend {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -241,7 +266,7 @@
     @media (max-width: 900px) {
       html, body { overflow: auto; }
       .slide { padding: 6vh 5vw 10vh; align-items: flex-start; overflow-y: auto; }
-      .grid.cols-2, .grid.cols-3, .grid.cols-4, .two-pane, .flow, .metric-legend { grid-template-columns: 1fr; }
+      .grid.cols-2, .grid.cols-3, .grid.cols-4, .two-pane, .flow, .metric-legend, .qr-slide { grid-template-columns: 1fr; }
       .row { grid-template-columns: 1fr; }
       .footer { display: none; }
       .nav { top: auto; bottom: 14px; left: 14px; right: 14px; justify-content: center; }
@@ -508,6 +533,28 @@
         </ul>
         <a class="demo-link" href="../8thwall-digital-twin/">Abrir 8th Wall →</a>
         <a class="demo-link" href="../8thwall-mock/">Plano B: mock →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <section class="slide">
+  <div class="content">
+    <div class="kicker">Acesse as demos</div>
+    <h2>Abra no celular durante a aula</h2>
+    <div class="qr-slide">
+      <div class="card compact">
+        <h3>Escaneie o QR Code</h3>
+        <p>Use a câmera do celular para abrir o link público da apresentação e testar as demos interativas.</p>
+        <ul>
+          <li>slides da aula;</li>
+          <li>demos Chart.js, D3.js, p5.js e Leaflet;</li>
+          <li>experiência 8th Wall/WebAR, quando disponível.</li>
+        </ul>
+        <p class="qr-caption">Se a rede oscilar, mantenha também a página aberta no computador da apresentação.</p>
+      </div>
+      <div class="qr-box">
+        <img src="assets/qrcode.png" alt="QR Code para acessar as demos da aula" />
       </div>
     </div>
   </div>
