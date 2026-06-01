@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Template 8thWall - Digital Twin Overlay</title>
+
+  <!-- Em um projeto 8thWall real, adicione o script XRWeb com sua appKey. -->
+  <!-- <script src="//apps.8thwall.com/xrweb?appKey=SUA_APP_KEY"></script> -->
+
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <script src="app.js"></script>
+</head>
+<body>
+  <!-- Em 8thWall real, inclua componentes como xrextras-loading, xrextras-runtime-error e xrweb. -->
+  <a-scene>
+    <a-camera position="0 1.6 0"></a-camera>
+
+    <!-- Conteúdo que seria ancorado em superfície ou image target. -->
+    <a-entity id="hvac-overlay" position="0 1.4 -2">
+      <a-box id="asset" color="#64748b" width="1" height="1" depth="1"></a-box>
+      <a-plane id="panel-bg" position="1.05 .25 0" width="1.4" height=".9" color="#111827"></a-plane>
+      <a-text id="panel-text" position=".45 .5 .04" width="1.7" color="#ffffff"></a-text>
+    </a-entity>
+  </a-scene>
+</body>
+</html>

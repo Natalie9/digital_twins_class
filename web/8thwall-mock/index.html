@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>8thWall Mock - Overlay AR</title>
+  <link rel="stylesheet" href="../style.css" />
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <style>
+    body { margin: 0; }
+    .hud {
+      position: fixed; z-index: 5; left: 16px; right: 16px; top: 16px;
+      background: rgba(255,255,255,.92); padding: 14px 16px; border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(15,23,42,.16);
+    }
+    .hud h1 { font-size: 20px; margin: 0 0 6px; }
+    .hud p { margin: 0; font-size: 14px; }
+    .back { position: fixed; z-index: 6; right: 16px; top: 16px; }
+  </style>
+</head>
+<body>
+  <a class="back" href="../">voltar</a>
+  <div class="hud">
+    <h1>8thWall/WebAR — Mock de inspeção</h1>
+    <p>Conceito: apontar o celular para um ativo e sobrepor status, temperatura, vibração e ação recomendada.</p>
+  </div>
+
+  <a-scene background="color: #e5e7eb" embedded>
+    <a-entity position="0 1.6 4">
+      <a-camera></a-camera>
+    </a-entity>
+
+    <a-entity position="0 1.5 -3" rotation="0 25 0">
+      <a-box position="0 0 0" depth="0.9" height="1.4" width="1.2" color="#64748b"></a-box>
+      <a-cylinder position="0 .95 0" radius=".35" height=".2" color="#334155"></a-cylinder>
+      <a-text value="HVAC-A" position="-.45 .2 .48" color="#fff" width="3"></a-text>
+    </a-entity>
+
+    <a-plane position="1.45 1.75 -2.65" rotation="0 -20 0" width="1.85" height="1.2" color="#111827" opacity="0.92"></a-plane>
+    <a-text value="Ativo: HVAC-A\nStatus: ATENCAO\nTemp: 27.2 C\nVibracao: 6.8 mm/s\nCO2 zona: 1180 ppm\nAcao: verificar filtros" position=".62 2.08 -2.58" rotation="0 -20 0" width="2.1" color="#fff"></a-text>
+    <a-sphere position=".68 1.2 -2.55" radius=".08" color="#ca8a04"></a-sphere>
+
+    <a-light type="ambient" intensity="0.75"></a-light>
+    <a-light type="directional" position="2 4 3" intensity="0.8"></a-light>
+  </a-scene>
+</body>
+</html>
