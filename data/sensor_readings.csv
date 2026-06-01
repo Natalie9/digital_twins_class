@@ -47,5 +47,5 @@ time,room_id,room_name,temperature_c,co2_ppm,occupancy,energy_kw,status,lat,lng
 "17:00","LAB-01","Laboratório IA",24.6,830,10,5.7,"normal",-23.55955,-46.73192
 "17:00","LAB-02","Laboratório Robótica",25.6,956,14,6.7,"atencao",-23.5591,-46.73125
 "17:00","SALA-12","Sala de Aula 12",25.2,1027,19,8.1,"atencao",-23.5588,-46.7323
-"17:00","HVAC-A","Casa de Máquinas A",26.7,969,17,8.3,"atencao",-23.55985,-46.73265
+"17:00","HVAC-A","Casa de Máquinas A",28.4,640,4,10.9,"critico",-23.55985,-46.73265
 "17:00","AUD-01","Auditório",26.6,1133,24,10.3,"atencao",-23.55835,-46.7317

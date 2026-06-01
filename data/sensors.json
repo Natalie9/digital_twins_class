@@ -580,11 +580,11 @@
       "time": "17:00",
       "room_id": "HVAC-A",
       "room_name": "Casa de Máquinas A",
-      "temperature_c": 26.7,
-      "co2_ppm": 969,
-      "occupancy": 17,
-      "energy_kw": 8.3,
-      "status": "atencao",
+      "temperature_c": 28.4,
+      "co2_ppm": 640,
+      "occupancy": 4,
+      "energy_kw": 10.9,
+      "status": "critico",
       "lat": -23.55985,
       "lng": -46.73265
     },
@@ -642,11 +642,11 @@
       "time": "17:00",
       "room_id": "HVAC-A",
       "room_name": "Casa de Máquinas A",
-      "temperature_c": 26.7,
-      "co2_ppm": 969,
-      "occupancy": 17,
-      "energy_kw": 8.3,
-      "status": "atencao",
+      "temperature_c": 28.4,
+      "co2_ppm": 640,
+      "occupancy": 4,
+      "energy_kw": 10.9,
+      "status": "critico",
       "lat": -23.55985,
       "lng": -46.73265
     },
@@ -679,8 +679,8 @@
     {
       "room_id": "HVAC-A",
       "room_name": "Casa de Máquinas A",
-      "level": "atencao",
-      "message": "CO₂ elevado: aumentar ventilação"
+      "level": "critico",
+      "message": "Temperatura elevada: verificar HVAC"
     },
     {
       "room_id": "AUD-01",
