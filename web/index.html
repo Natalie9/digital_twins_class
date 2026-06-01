@@ -11,6 +11,62 @@
     <h1>Demos de Visualização em Gêmeos Digitais</h1>
     <p>Mini projetos para demonstrar bibliotecas de interface, visualização e interação.</p>
 
+    <section class="metrics-panel">
+      <div class="metrics-intro">
+        <span class="eyebrow">Cenário das demos</span>
+        <h2>Gêmeo Digital de um edifício inteligente</h2>
+        <p>
+          Todas as páginas usam o mesmo conjunto de sensores fictícios.
+          O status de cada ambiente é calculado principalmente por
+          <strong>temperatura</strong> e <strong>CO₂</strong>.
+          A ocupação ajuda a explicar o problema, e energia indica o impacto operacional.
+        </p>
+      </div>
+
+      <div class="metric-cards">
+        <article class="metric-card thermometer">
+          <div class="metric-icon" aria-hidden="true">🌡️</div>
+          <div>
+            <h3>Temperatura</h3>
+            <p>Indica conforto térmico e possível sobrecarga do HVAC.</p>
+            <div class="status-scale">
+              <span class="scale-item normal">≤ 25,5 °C<br><b>normal</b></span>
+              <span class="scale-item atencao">&gt; 25,5 °C<br><b>atenção</b></span>
+              <span class="scale-item critico">&gt; 27,5 °C<br><b>crítico</b></span>
+            </div>
+          </div>
+        </article>
+
+        <article class="metric-card air">
+          <div class="metric-icon" aria-hidden="true">🌫️</div>
+          <div>
+            <h3>CO₂ / ar poluído</h3>
+            <p>Representa qualidade do ar e necessidade de ventilação.</p>
+            <div class="status-scale">
+              <span class="scale-item normal">≤ 850 ppm<br><b>normal</b></span>
+              <span class="scale-item atencao">&gt; 850 ppm<br><b>atenção</b></span>
+              <span class="scale-item critico">&gt; 1200 ppm<br><b>crítico</b></span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="support-metrics">
+        <div>
+          <strong>👥 Ocupação</strong>
+          <span>Ajuda a explicar aumento de CO₂ e calor.</span>
+        </div>
+        <div>
+          <strong>⚡ Energia</strong>
+          <span>Mostra custo operacional e esforço do sistema.</span>
+        </div>
+        <div>
+          <strong>🚨 Status final</strong>
+          <span>Crítico se temperatura ou CO₂ ultrapassarem limite crítico.</span>
+        </div>
+      </div>
+    </section>
+
     <section class="grid">
       <a class="card" href="slides/">
         <h2>Slides</h2>
