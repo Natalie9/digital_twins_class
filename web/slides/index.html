@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Slides — Visualização em Gêmeos Digitais</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #111827;
+      --card: #ffffff;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --blue: #60a5fa;
+      --green: #22c55e;
+      --yellow: #facc15;
+      --red: #f87171;
+      --purple: #c084fc;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; overflow: hidden; }
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(37, 99, 235, .28), transparent 28%),
+        radial-gradient(circle at 85% 10%, rgba(192, 132, 252, .22), transparent 26%),
+        radial-gradient(circle at 70% 90%, rgba(34, 197, 94, .18), transparent 24%),
+        var(--bg);
+      color: var(--text);
+    }
+
+    .deck { width: 100vw; height: 100vh; position: relative; }
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: none;
+      padding: 5.5vh 7vw;
+      align-items: center;
+      justify-content: center;
+    }
+    .slide.active { display: flex; }
+    .content { width: min(1180px, 100%); }
+
+    .kicker {
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: .13em;
+      font-weight: 850;
+      font-size: clamp(13px, 1.2vw, 18px);
+      margin-bottom: 14px;
+    }
+
+    h1, h2 { margin: 0; line-height: 1.03; }
+    h1 { font-size: clamp(44px, 7.3vw, 96px); letter-spacing: -0.06em; }
+    h2 { font-size: clamp(36px, 5.2vw, 72px); letter-spacing: -0.045em; }
+    h3 { margin: 0 0 8px; font-size: clamp(22px, 2.2vw, 34px); }
+    p, li { font-size: clamp(20px, 2vw, 31px); line-height: 1.3; color: var(--muted); }
+    p.lead { font-size: clamp(24px, 2.7vw, 40px); max-width: 980px; color: #dbeafe; }
+    strong { color: white; }
+
+    .grid { display: grid; gap: 20px; }
+    .grid.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid.cols-6 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+
+    .card {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 26px;
+      padding: 24px;
+      box-shadow: 0 24px 60px rgba(0,0,0,.18);
+      backdrop-filter: blur(10px);
+    }
+    .card.light { background: rgba(255,255,255,.94); color: #172033; }
+    .card.light p, .card.light li { color: #475569; }
+    .card.light strong { color: #0f172a; }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      padding: 8px 13px;
+      background: rgba(96,165,250,.14);
+      color: #bfdbfe;
+      font-weight: 800;
+      font-size: clamp(14px, 1.4vw, 18px);
+      margin: 6px 6px 0 0;
+    }
+
+    .tech {
+      min-height: 190px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .tech .icon { font-size: clamp(28px, 3vw, 46px); }
+    .tech h3 { font-size: clamp(18px, 1.65vw, 28px); }
+    .tech p { font-size: clamp(15px, 1.25vw, 19px); margin: 0; }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 10px;
+      align-items: center;
+      margin-top: 28px;
+    }
+    .step {
+      text-align: center;
+      padding: 18px 12px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.16);
+      font-size: clamp(15px, 1.6vw, 24px);
+      font-weight: 850;
+    }
+    .arrow { color: var(--blue); font-size: 34px; text-align: center; }
+
+    .two-pane {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .demo-link {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      padding: 18px 20px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      margin-top: 10px;
+      font-size: clamp(18px, 1.6vw, 24px);
+      font-weight: 800;
+    }
+    .demo-link:hover { background: rgba(96,165,250,.18); }
+
+    .footer {
+      position: fixed;
+      left: 24px;
+      right: 24px;
+      bottom: 18px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      color: rgba(226,232,240,.72);
+      font-size: 14px;
+      z-index: 20;
+      pointer-events: none;
+    }
+    .progress {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 5px;
+      background: rgba(255,255,255,.1);
+      z-index: 30;
+    }
+    .bar { height: 100%; background: linear-gradient(90deg, var(--blue), var(--green)); width: 0; }
+
+    .nav {
+      position: fixed;
+      top: 18px;
+      right: 18px;
+      z-index: 40;
+      display: flex;
+      gap: 8px;
+    }
+    .nav button, .nav a {
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.1);
+      color: white;
+      border-radius: 999px;
+      padding: 8px 12px;
+      text-decoration: none;
+      cursor: pointer;
+      font-weight: 800;
+    }
+
+    .note { font-size: clamp(16px, 1.4vw, 22px); color: #cbd5e1; }
+    .blue { color: var(--blue); }
+    .green { color: var(--green); }
+    .yellow { color: var(--yellow); }
+    .red { color: var(--red); }
+    .purple { color: var(--purple); }
+
+    @media (max-width: 900px) {
+      .slide { padding: 6vh 5vw; align-items: flex-start; overflow-y: auto; }
+      .grid.cols-2, .grid.cols-3, .grid.cols-6, .two-pane, .flow { grid-template-columns: 1fr; }
+      .arrow { display: none; }
+      .tech { min-height: auto; }
+      .footer { display: none; }
+    }
+
+    @media print {
+      html, body { height: auto; overflow: auto; background: white; color: black; }
+      .slide { position: relative; display: flex !important; min-height: 100vh; page-break-after: always; background: white; color: black; }
+      .nav, .footer, .progress { display: none; }
+      .card { border: 1px solid #ddd; background: white; color: black; box-shadow: none; }
+      p, li { color: #333; }
+    }
+  </style>
+</head>
+<body>
+  <div class="deck">
+    <section class="slide active">
+      <div class="content">
+        <div class="kicker">Gêmeos Digitais</div>
+        <h1>Visualização e Interface</h1>
+        <p class="lead">Como transformar dados, modelos e alertas em uma interface que apoia decisão.</p>
+        <div>
+          <span class="pill">Dashboards</span>
+          <span class="pill">Visualização 2D</span>
+          <span class="pill">Mapas</span>
+          <span class="pill">AR/WebAR</span>
+          <span class="pill">Simulação</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="content">
+        <div class="kicker">Ideia central</div>
+        <h2>A interface ideal depende da decisão</h2>
+        <div class="grid cols-2" style="margin-top:34px">
+          <div class="card"><h3>Não basta mostrar dados</h3><p>É preciso responder: <strong>o que está acontecendo?</strong>, <strong>onde?</strong>, <strong>qual o risco?</strong> e <strong>o que fazer?</strong></p></div>
+          <div class="card"><h3>O usuário precisa agir</h3><p>A visualização deve aproximar dados, modelo, operação e tomada de decisão.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="content">
+        <div class="kicker">Cenário das demos</div>
+        <h2>Gêmeo Digital de um edifício inteligente</h2>
+        <div class="flow">
+          <div class="step">Salas</div>
+          <div class="step">Sensores</div>
+          <div class="step">Gateway</div>
+          <div class="step">Modelo</div>
+          <div class="step">Alerta</div>
+          <div class="step">Operador</div>
+        </div>
+        <p class="lead" style="margin-top:32px">Métricas: temperatura, CO₂, ocupação, energia, status e prioridade de inspeção.</p>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="content">
+        <div class="kicker">Bibliotecas demonstradas</div>
+        <h2>Cada ferramenta responde uma pergunta diferente</h2>
+        <div class="grid cols-3" style="margin-top:28px">
+          <div class="card tech"><div class="icon">📊</div><h3>Chart.js</h3><p>Quais são os valores e tendências?</p></div>
+          <div class="card tech"><div class="icon">🐍</div><h3>Streamlit</h3><p>Como montar um dashboard analítico rápido?</p></div>
+          <div class="card tech"><div class="icon">🔗</div><h3>D3.js</h3><p>Como explicar o fluxo de decisão?</p></div>
+          <div class="card tech"><div class="icon">🎨</div><h3>p5.js</h3><p>Como simular comportamento em 2D?</p></div>
+          <div class="card tech"><div class="icon">🗺️</div><h3>Leaflet</h3><p>Onde está o problema e qual rota seguir?</p></div>
+          <div class="card tech"><div class="icon">🥽</div><h3>8th Wall</h3><p>Como sobrepor dados ao ativo físico?</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="content">
+        <div class="kicker">Dashboard e gráficos</div>
+        <h2>Monitorar, comparar e diagnosticar</h2>
+        <div class="two-pane">
+          <div class="card light">
+            <h3>Chart.js</h3>
+            <p>Gráficos web simples: linha, barras e rosca para mostrar tendência, comparação e distribuição de estados.</p>
+            <a class="demo-link" style="color:#2563eb" href="../chartjs/">Abrir demo Chart.js →</a>
+          </div>
+          <div class="card light">
+            <h3>Streamlit</h3>
+            <p>Dashboard operacional em Python com KPIs, filtros, alertas e recomendações.</p>
+            <a class="demo-link" style="color:#2563eb" href="http://localhost:8501">Abrir Streamlit →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="content">
+        <div class="kicker">Visualização customizada</div>
+        <h2>D3.js mostra a cadeia de decisão</h2>
+        <div class="card" style="margin-top:28px">
+          <p class="lead"><strong>Ambiente físico → sensor → gateway → modelo → alerta → operador</strong></p>
+          <p>O objetivo é explicar a arquitetura informacional do Gêmeo Digital: não apenas o valor do sensor, mas como esse valor vira uma ação.</p>
+          <a class="demo-link" href="../d3/">Abrir demo D3.js →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="content">
+        <div class="kicker">Visualização 2D e espacial</div>
+        <h2>Quando posição e contexto importam</h2>
+        <div class="two-pane">
+          <div class="card">
+            <h3>p5.js</h3>
+            <p>Planta baixa, partículas e zonas coloridas para representar ocupação e risco de CO₂.</p>
+            <a class="demo-link" href="../p5/">Abrir p5.js →</a>
+          </div>
+          <div class="card">
+            <h3>Leaflet</h3>
+            <p>Mapa operacional com sensores, áreas de risco, filtros, prioridade e rota de inspeção.</p>
+            <a class="demo-link" href="../leaflet/">Abrir Leaflet →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="content">
+        <div class="kicker">Interface de campo</div>
+        <h2>AR aproxima dados do ativo físico</h2>
+        <div class="card" style="margin-top:28px">
+          <p class="lead">Com 8th Wall/WebAR, o técnico pode apontar o celular para uma máquina e ver status, temperatura, vibração, CO₂ e ação recomendada.</p>
+          <a class="demo-link" href="../8thwall-digital-twin/">Abrir demo 8th Wall →</a>
+          <a class="demo-link" href="../8thwall-mock/">Abrir mock WebAR →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="content">
+        <div class="kicker">Comparação rápida</div>
+        <h2>Qual interface escolher?</h2>
+        <div class="grid cols-2" style="margin-top:28px">
+          <div class="card"><h3 class="blue">Acompanhar operação</h3><p>Streamlit, Chart.js</p></div>
+          <div class="card"><h3 class="purple">Entender relações</h3><p>D3.js</p></div>
+          <div class="card"><h3 class="green">Simular comportamento</h3><p>p5.js</p></div>
+          <div class="card"><h3 class="yellow">Localizar problema</h3><p>Leaflet</p></div>
+          <div class="card"><h3 class="red">Inspecionar em campo</h3><p>8th Wall / WebAR</p></div>
+          <div class="card"><h3>Fechamento</h3><p>A pergunta certa é: <strong>qual decisão o usuário precisa tomar?</strong></p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="content">
+        <div class="kicker">Atividade final</div>
+        <h2>Projete a interface do seu Gêmeo Digital</h2>
+        <div class="card" style="margin-top:28px">
+          <ul>
+            <li>Quais dados precisam aparecer?</li>
+            <li>Quais KPIs indicam risco?</li>
+            <li>Precisa de dashboard, mapa, 2D, 3D ou AR?</li>
+            <li>Onde entram alertas e recomendações?</li>
+            <li>Uma interface imersiva agrega valor ou é excesso?</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="nav">
+    <a href="../">Demos</a>
+    <button id="prev">←</button>
+    <button id="next">→</button>
+  </div>
+  <div class="footer"><span>Visualização e Interface em Gêmeos Digitais</span><span id="counter"></span></div>
+  <div class="progress"><div id="bar" class="bar"></div></div>
+
+  <script>
+    const slides = [...document.querySelectorAll('.slide')]
+    const counter = document.querySelector('#counter')
+    const bar = document.querySelector('#bar')
+    let current = Number(new URLSearchParams(location.search).get('s') || 0)
+
+    function show(index) {
+      current = Math.max(0, Math.min(slides.length - 1, index))
+      slides.forEach((slide, i) => slide.classList.toggle('active', i === current))
+      counter.textContent = `${current + 1} / ${slides.length}`
+      bar.style.width = `${((current + 1) / slides.length) * 100}%`
+      history.replaceState(null, '', `?s=${current}`)
+    }
+
+    function next() { show(current + 1) }
+    function prev() { show(current - 1) }
+
+    document.querySelector('#next').addEventListener('click', next)
+    document.querySelector('#prev').addEventListener('click', prev)
+    document.addEventListener('keydown', (event) => {
+      if (['ArrowRight', 'PageDown', ' '].includes(event.key)) next()
+      if (['ArrowLeft', 'PageUp', 'Backspace'].includes(event.key)) prev()
+      if (event.key === 'Home') show(0)
+      if (event.key === 'End') show(slides.length - 1)
+    })
+    show(current)
+  </script>
+</body>
+</html>

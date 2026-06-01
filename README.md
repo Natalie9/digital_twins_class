@@ -28,6 +28,7 @@ Depois acesse:
 
 - Streamlit: <http://localhost:8501>
 - Índice web: <http://localhost:8080>
+- Slides da aula: <http://localhost:8080/slides/>
 - Chart.js: <http://localhost:8080/chartjs/>
 - D3.js: <http://localhost:8080/d3/>
 - p5.js: <http://localhost:8080/p5/>
