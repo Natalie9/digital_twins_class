@@ -16,7 +16,8 @@ Segundo a documentação atual:
 ## O que esta demo mostra
 
 - uso de `@8thwall/engine-binary` via CDN;
-- uso de `xrextras` e `landing-page`;
+- uso de `xrextras`;
+- carregamento síncrono do `xr.js` antes dos extras para evitar corrida de inicialização;
 - cena A-Frame com componente customizado;
 - toque/click no chão para posicionar um ativo HVAC;
 - overlay operacional com dados de Gêmeo Digital;
@@ -37,6 +38,10 @@ http://localhost:8080/8thwall-digital-twin/
 ```
 
 No computador, `localhost` costuma funcionar para teste. Em celular, câmera/AR geralmente exige HTTPS. Para demonstração móvel, use um túnel HTTPS ou abra/adapte o projeto no 8th Wall Studio Desktop.
+
+## Nota sobre `landing-page`
+
+A primeira versão incluía `@8thwall/landing-page`, mas ele foi removido porque, carregado diretamente por CDN, pode executar antes de `XR8` estar disponível e gerar `ReferenceError: XR8 is not defined`. Para uma demo de aula, é mais robusto manter apenas `engine-binary` + `xrextras`.
 
 ## Relação com Gêmeos Digitais
 
