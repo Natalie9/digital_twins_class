@@ -3,21 +3,192 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Leaflet - Mapa de Sensores</title>
+  <title>Leaflet - Mapa Operacional do Gêmeo Digital</title>
   <link rel="stylesheet" href="../style.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <style>
-    #map { height: 680px; border-radius: 18px; box-shadow: 0 8px 24px rgba(15,23,42,.08); }
-    .legend { background: white; padding: 10px; border-radius: 12px; line-height: 1.6; box-shadow: 0 4px 16px rgba(15,23,42,.16); }
+    .map-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 320px;
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    #map {
+      min-height: 720px;
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(15,23,42,.08);
+      overflow: hidden;
+    }
+
+    .side-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .kpi {
+      padding: 12px;
+      border-radius: 14px;
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+    }
+
+    .kpi .value {
+      display: block;
+      margin-top: 4px;
+      font-size: 22px;
+      font-weight: 850;
+      color: var(--text);
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .filter-btn {
+      border: 1px solid #cbd5e1;
+      background: white;
+      color: #334155;
+      border-radius: 999px;
+      padding: 7px 10px;
+      font-weight: 750;
+      cursor: pointer;
+    }
+
+    .filter-btn.active {
+      background: #2563eb;
+      border-color: #2563eb;
+      color: white;
+    }
+
+    .sensor-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .sensor-item {
+      border: 1px solid #e5e7eb;
+      background: #fff;
+      border-radius: 14px;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    .sensor-item:hover,
+    .sensor-item.active {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 2px rgba(37,99,235,.12);
+    }
+
+    .sensor-item strong {
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .sensor-item small {
+      color: var(--muted);
+    }
+
+    .metric {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 7px 0;
+      border-bottom: 1px solid #e5e7eb;
+      color: var(--muted);
+    }
+
+    .metric strong {
+      color: var(--text);
+    }
+
+    .map-label {
+      border: 0;
+      background: transparent;
+    }
+
+    .map-label span {
+      display: inline-block;
+      padding: 3px 7px;
+      border-radius: 999px;
+      color: white;
+      font-size: 11px;
+      font-weight: 800;
+      box-shadow: 0 3px 10px rgba(15,23,42,.22);
+      white-space: nowrap;
+    }
+
+    .legend {
+      background: white;
+      padding: 10px;
+      border-radius: 12px;
+      line-height: 1.6;
+      box-shadow: 0 4px 16px rgba(15,23,42,.16);
+    }
+
+    @media (max-width: 900px) {
+      .map-layout {
+        grid-template-columns: 1fr;
+      }
+      #map {
+        min-height: 620px;
+      }
+    }
   </style>
 </head>
 <body>
   <main class="container">
     <a href="../">← voltar</a>
-    <h1>Leaflet — Mapa de Sensores</h1>
-    <p>Visualização espacial de sensores, popups operacionais e zonas de influência.</p>
-    <div id="map"></div>
+    <h1>Leaflet — Mapa Operacional do Gêmeo Digital</h1>
+    <p>
+      Visualização espacial para localizar sensores, priorizar inspeções e mostrar áreas de risco no campus.
+    </p>
+
+    <section class="map-layout">
+      <div id="map"></div>
+
+      <aside class="side-panel">
+        <section class="panel">
+          <h2>Resumo espacial</h2>
+          <div class="kpi-grid">
+            <div class="kpi">Sensores<span id="kpiSensors" class="value">0</span></div>
+            <div class="kpi">Críticos<span id="kpiCritical" class="value">0</span></div>
+            <div class="kpi">CO₂ médio<span id="kpiCo2" class="value">0</span></div>
+            <div class="kpi">Energia<span id="kpiEnergy" class="value">0</span></div>
+          </div>
+
+          <div class="filters" aria-label="Filtros de estado">
+            <button class="filter-btn active" data-filter="todos">Todos</button>
+            <button class="filter-btn" data-filter="critico">Críticos</button>
+            <button class="filter-btn" data-filter="atencao">Atenção</button>
+            <button class="filter-btn" data-filter="normal">Normais</button>
+          </div>
+        </section>
+
+        <section id="selectedSensor" class="panel">
+          <h2>Sensor selecionado</h2>
+          <p>Clique em um marcador ou item da lista.</p>
+        </section>
+
+        <section class="panel">
+          <h2>Prioridade de inspeção</h2>
+          <div id="sensorList" class="sensor-list"></div>
+        </section>
+      </aside>
+    </section>
   </main>
   <script src="app.js"></script>
 </body>
