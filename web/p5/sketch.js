@@ -299,14 +299,40 @@ function updateSelectedPanel(room) {
   document.querySelector('#selectedRoom').innerHTML = `
     <h2>${room.name}</h2>
     <span class="badge ${status}">${statusLabel[status]}</span>
+
+    <div class="metric-bars">
+      ${metricBarHtml('🌡️ Temperatura', room.temp, '°C', 20, 32, 25.5, 27.5)}
+      ${metricBarHtml('🌫️ CO₂', room.co2, 'ppm', 500, 1600, 850, 1200)}
+    </div>
+
     <div class="metric-grid">
-      <div class="metric"><span>Temperatura</span><strong>${room.temp.toFixed(1)} °C</strong></div>
-      <div class="metric"><span>CO₂</span><strong>${Math.round(room.co2)} ppm</strong></div>
       <div class="metric"><span>Ocupação</span><strong>${room.occ}</strong></div>
       <div class="metric"><span>Área</span><strong>${room.area} m²</strong></div>
       <div class="metric"><span>Energia</span><strong>${room.energy.toFixed(1)} kW</strong></div>
     </div>
     <div class="action-box"><strong>Diagnóstico:</strong><br>${diagnostic}</div>
+  `;
+}
+
+function metricBarHtml(label, value, unit, minValue, maxValue, attention, critical) {
+  const status = metricStatus(value, attention, critical);
+  const pct = Math.max(0, Math.min(100, ((value - minValue) / (maxValue - minValue)) * 100));
+  const formattedValue = unit === 'ppm' ? Math.round(value) : value.toFixed(1);
+  return `
+    <div class="metric-bar">
+      <div class="metric-bar-head">
+        <span>${label}</span>
+        <strong>${formattedValue} ${unit}</strong>
+      </div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:${pct}%; background:${statusColor(status)}"></div>
+      </div>
+      <div class="bar-foot">
+        <span>normal</span>
+        <span>atenção</span>
+        <span>crítico</span>
+      </div>
+    </div>
   `;
 }
 

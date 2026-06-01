@@ -14,6 +14,7 @@ Demonstra uma planta baixa simplificada com comportamento dinâmico.
 - indicadores separados de temperatura e CO₂;
 - áreas dos ambientes em metros quadrados;
 - cartões de resumo dos ambientes acima do canvas;
+- barras coloridas de temperatura e CO₂ no painel da sala selecionada;
 - canvas mais limpo, mantendo apenas rótulos simples dentro da planta;
 - relação entre ocupação, CO₂, temperatura e status operacional.
 

@@ -132,6 +132,46 @@
       color: var(--text);
     }
 
+    .metric-bars {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .metric-bar-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .metric-bar-head strong {
+      color: var(--text);
+    }
+
+    .bar-track {
+      height: 10px;
+      border-radius: 999px;
+      background: #e5e7eb;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      transition: width .18s ease;
+    }
+
+    .bar-foot {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 4px;
+      color: #94a3b8;
+      font-size: 11px;
+    }
+
     .action-box {
       margin-top: 10px;
       padding: 10px;
@@ -196,6 +236,6 @@
       <div id="canvas-holder"></div>
     </section>
   </main>
-  <script src="sketch.js?v=7"></script>
+  <script src="sketch.js?v=8"></script>
 </body>
 </html>
