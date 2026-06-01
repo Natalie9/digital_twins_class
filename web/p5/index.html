@@ -70,6 +70,47 @@
       color: white;
     }
 
+    .room-overview {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 10px;
+    }
+
+    .room-summary-card {
+      border: 1px solid #e5e7eb;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 12px;
+      cursor: pointer;
+      text-align: left;
+      box-shadow: 0 4px 14px rgba(15,23,42,.06);
+    }
+
+    .room-summary-card.active {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37,99,235,.14);
+    }
+
+    .room-summary-card strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .room-summary-card small {
+      display: block;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .room-summary-card .status-dot {
+      display: inline-block;
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      margin-right: 5px;
+    }
+
     .metric-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -150,9 +191,11 @@
         </section>
       </section>
 
+      <section id="roomOverview" class="room-overview" aria-label="Resumo dos ambientes"></section>
+
       <div id="canvas-holder"></div>
     </section>
   </main>
-  <script src="sketch.js?v=6"></script>
+  <script src="sketch.js?v=7"></script>
 </body>
 </html>

@@ -106,6 +106,7 @@ function resetSimulation() {
   }
   if (!rooms.some((room) => room.id === selectedRoomId)) selectedRoomId = rooms[0].id;
   updateSelectedPanel(getSelectedRoom());
+  renderRoomOverview();
 }
 
 function draw() {
@@ -128,7 +129,7 @@ function draw() {
   }
 
   for (const room of rooms) {
-    drawRoomInfo(room);
+    drawRoomLabel(room);
   }
 
   fill('#172033');
@@ -137,6 +138,11 @@ function draw() {
   text('Clique em uma sala para aplicar o modo selecionado.', 40, 520);
   text('Exemplo: HVAC crítico por temperatura alta, mesmo com CO₂ baixo.', 40, 542);
   pop();
+
+  if (frameCount % 20 === 0) {
+    updateSelectedPanel(getSelectedRoom());
+    renderRoomOverview();
+  }
 }
 
 function roomStatus(room) {
@@ -172,61 +178,23 @@ function drawRoomBase(room) {
   strokeWeight(selected ? 4 : 2);
   rect(room.x, room.y, room.w, room.h, 14);
 
-  noStroke();
-  fill(255, 255, 255, 80);
-  rect(room.x + 10, room.y + 10, room.w - 20, 142, 12);
 }
 
-function drawRoomInfo(room) {
+function drawRoomLabel(room) {
   const status = roomStatus(room);
-  const panelH = 142;
-
-  noStroke();
-  fill(15, 23, 42, 218);
-  rect(room.x + 10, room.y + 10, room.w - 20, panelH, 12);
-
-  fill('#f8fafc');
-  textSize(18);
-  text(room.name, room.x + 20, room.y + 34);
-
-  fill('#cbd5e1');
-  textSize(12);
-  text(`${room.area} m²`, room.x + room.w - 70, room.y + 34);
-
-  drawMetricBar(room.x + 20, room.y + 59, room.w - 40, '🌡️', room.temp, 25.5, 27.5, 20, 32, '°C');
-  drawMetricBar(room.x + 20, room.y + 95, room.w - 40, '🌫️', room.co2, 850, 1200, 500, 1600, 'ppm');
-
-  fill('#cbd5e1');
-  textSize(13);
-  text(`ocupação: ${room.occ}`, room.x + 20, room.y + 138);
-
   const color = statusColor(status);
-  fill(color);
-  rect(room.x + room.w - 98, room.y + room.h - 38, 78, 26, 999);
-  fill('white');
-  textSize(12);
-  text(status, room.x + room.w - 84, room.y + room.h - 20);
-}
 
-function drawMetricBar(x, y, w, icon, value, attention, critical, minValue, maxValue, unit) {
-  const status = metricStatus(value, attention, critical);
-  const pct = constrain((value - minValue) / (maxValue - minValue), 0, 1);
-  const barX = x + 42;
-  const barW = w - 42;
+  fill(255, 255, 255, 225);
+  stroke('#cbd5e1');
+  strokeWeight(1);
+  rect(room.x + 12, room.y + 12, 112, 30, 999);
 
-  fill('#f8fafc');
   noStroke();
-  textSize(12);
-  text(`${icon} ${Math.round(value)} ${unit}`, x, y);
-
-  fill('#475569');
-  rect(barX, y + 8, barW, 9, 999);
-  fill(statusColor(status));
-  rect(barX, y + 8, barW * pct, 9, 999);
-
-  fill(statusColor(status));
-  textSize(10);
-  text(status, barX, y + 30);
+  fill(color);
+  circle(room.x + 28, room.y + 27, 8);
+  fill('#0f172a');
+  textSize(13);
+  text(room.name, room.x + 40, room.y + 31);
 }
 
 function drawLegend() {
@@ -259,6 +227,7 @@ function mousePressed() {
       selectedRoomId = room.id;
       applyMode(room);
       updateSelectedPanel(room);
+      renderRoomOverview();
       return;
     }
   }
@@ -291,6 +260,33 @@ function applyMode(room) {
 
 function getSelectedRoom() {
   return rooms.find((room) => room.id === selectedRoomId) || rooms[0];
+}
+
+function renderRoomOverview() {
+  const container = document.querySelector('#roomOverview');
+  if (!container || !rooms) return;
+
+  container.innerHTML = rooms.map((room) => {
+    const status = roomStatus(room);
+    const color = statusColor(status);
+    const active = room.id === selectedRoomId ? 'active' : '';
+    return `
+      <button class="room-summary-card ${active}" data-room-id="${room.id}" type="button">
+        <strong><span class="status-dot" style="background:${color}"></span>${room.name}</strong>
+        <small>${room.area} m² · ${statusLabel[status]}</small>
+        <small>🌡️ ${room.temp.toFixed(1)} °C · 🌫️ ${Math.round(room.co2)} ppm</small>
+        <small>👥 ${room.occ} · ⚡ ${room.energy.toFixed(1)} kW</small>
+      </button>
+    `;
+  }).join('');
+
+  container.querySelectorAll('.room-summary-card').forEach((button) => {
+    button.addEventListener('click', () => {
+      selectedRoomId = button.dataset.roomId;
+      updateSelectedPanel(getSelectedRoom());
+      renderRoomOverview();
+    });
+  });
 }
 
 function updateSelectedPanel(room) {
