@@ -113,9 +113,11 @@ Conceito associado:
 - campus/cidade inteligente;
 - inspeção e resposta operacional.
 
-## 6. 8thWall/WebAR — interface de campo
+## 6. 8th Wall/WebAR — interface de campo
 
-Acesse: <http://localhost:8080/8thwall-mock/>
+Acesse primeiro: <http://localhost:8080/8thwall-digital-twin/>
+
+Plano B sem câmera/SLAM: <http://localhost:8080/8thwall-mock/>
 
 Mensagem para a aula:
 
@@ -123,8 +125,10 @@ Mensagem para a aula:
 
 Mostre:
 
-- equipamento 3D;
-- painel flutuante;
+- engine 8th Wall carregada via `@8thwall/engine-binary`;
+- toque/click para posicionar o ativo;
+- equipamento HVAC em AR;
+- painel flutuante com dados do Gêmeo Digital;
 - estado do ativo;
 - ação recomendada.
 
@@ -133,7 +137,8 @@ Conceito associado:
 - overlay AR;
 - inspeção;
 - manutenção;
-- interação com ativo físico.
+- interação com ativo físico;
+- diferença entre dashboard remoto e interface de campo.
 
 ## Fechamento
 

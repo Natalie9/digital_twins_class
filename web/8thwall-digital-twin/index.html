@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>8th Wall — Digital Twin AR Overlay</title>
+
+  <!--
+    8th Wall open-source stack, 2026:
+    - @8thwall/engine-binary fornece xr.js com SLAM distribuído em binário.
+    - @8thwall/xrextras adiciona componentes úteis de loading/erro/gestos.
+    - @8thwall/landing-page cria fallback para dispositivos sem suporte.
+  -->
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@8thwall/xrextras@1/dist/xrextras.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@8thwall/landing-page@1/dist/landing-page.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@8thwall/engine-binary@1/dist/xr.js" crossorigin="anonymous" async data-preload-chunks="slam"></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="topbar">
+    <a href="../">← voltar</a>
+    <strong>8th Wall AR</strong>
+    <span>Toque no chão para posicionar o ativo</span>
+  </div>
+
+  <div id="status-card" class="status-card">
+    <div class="label">Gêmeo Digital</div>
+    <h1>HVAC-A</h1>
+    <p><b>Status:</b> <span id="status">atenção</span></p>
+    <p><b>Temp:</b> <span id="temp">27.2</span> °C</p>
+    <p><b>Vibração:</b> <span id="vibration">6.8</span> mm/s</p>
+    <p><b>CO₂:</b> <span id="co2">1180</span> ppm</p>
+    <p class="action">Ação: verificar filtros e ventilação</p>
+  </div>
+
+  <script>
+    const twinState = {
+      assetId: 'HVAC-A',
+      status: 'atenção',
+      temperature: 27.2,
+      vibration: 6.8,
+      co2: 1180,
+      action: 'verificar filtros e ventilação',
+    }
+
+    function statusColor(status) {
+      if (status === 'crítico') return '#dc2626'
+      if (status === 'atenção') return '#ca8a04'
+      return '#16a34a'
+    }
+
+    AFRAME.registerComponent('digital-twin-placer', {
+      init() {
+        this.placed = false
+        this.sceneEl.addEventListener('click', event => {
+          if (!event.detail || !event.detail.intersection) return
+          const point = event.detail.intersection.point
+          this.placeAsset(point)
+        })
+      },
+      placeAsset(point) {
+        const old = document.querySelector('#asset-root')
+        if (old) old.remove()
+
+        const color = statusColor(twinState.status)
+        const root = document.createElement('a-entity')
+        root.id = 'asset-root'
+        root.setAttribute('position', `${point.x} ${point.y} ${point.z}`)
+
+        root.innerHTML = `
+          <a-cylinder position="0 0.55 0" radius="0.32" height="1.1" color="#64748b" shadow></a-cylinder>
+          <a-box position="0 1.18 0" width="0.55" height="0.22" depth="0.55" color="${color}" shadow></a-box>
+          <a-torus position="0 0.2 0" radius="0.38" radius-tubular="0.018" color="#334155"></a-torus>
+
+          <a-plane position="0.95 1.25 0" rotation="0 -25 0" width="1.45" height="0.9" color="#111827" opacity="0.94"></a-plane>
+          <a-text position="0.33 1.55 0.03" rotation="0 -25 0" width="1.65" color="#ffffff"
+            value="Ativo: ${twinState.assetId}\nStatus: ${twinState.status.toUpperCase()}\nTemp: ${twinState.temperature} C\nVibracao: ${twinState.vibration} mm/s\nCO2: ${twinState.co2} ppm\nAcao: ${twinState.action}">
+          </a-text>
+          <a-sphere position="0.38 0.95 0.38" radius="0.06" color="${color}" animation="property: scale; dir: alternate; dur: 650; loop: true; to: 1.5 1.5 1.5"></a-sphere>
+        `
+        this.sceneEl.appendChild(root)
+        document.querySelector('.topbar span').textContent = 'Ativo posicionado — toque novamente para mover'
+      },
+    })
+  </script>
+
+  <a-scene
+    digital-twin-placer
+    landing-page
+    xrextras-loading
+    xrextras-runtime-error
+    renderer="colorManagement: true; physicallyCorrectLights: true"
+    xrweb="allowedDevices: any; defaultEnvironmentSkyTopColor: #0ea5e9; defaultEnvironmentSkyBottomColor: #e0f2fe; defaultEnvironmentFloorColor: #f8fafc; defaultEnvironmentFogIntensity: 0.25;">
+
+    <a-camera
+      id="camera"
+      position="0 1.6 0"
+      raycaster="objects: .cantap"
+      cursor="fuse: false; rayOrigin: mouse;">
+    </a-camera>
+
+    <a-box
+      id="ground"
+      class="cantap"
+      scale="1000 2 1000"
+      position="0 -1 0"
+      material="shader: shadow; transparent: true; opacity: 0.35"
+      shadow>
+    </a-box>
+
+    <a-light type="ambient" intensity="0.65"></a-light>
+    <a-entity
+      light="type: directional; intensity: 0.9; castShadow: true"
+      position="2 5 3">
+    </a-entity>
+  </a-scene>
+</body>
+</html>

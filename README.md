@@ -13,7 +13,8 @@ Cenário único usado em todos os exemplos: um **edifício inteligente/laborató
 | D3.js | Grafo customizado de relações | Entidades, sensores, ativos e alertas |
 | p5.js | Simulação visual 2D | Planta baixa, zonas, ocupação e dispersão |
 | Leaflet | Mapa interativo | Ativos e sensores distribuídos no espaço |
-| 8thWall | Modelo de experiência AR | Overlay de dados sobre ativo físico |
+| 8th Wall | Overlay AR com engine-binary | Dados sobrepostos ao ativo físico |
+| WebAR mock | Cena conceitual sem engine AR | Plano B para demonstrar sem câmera/SLAM |
 
 ## Como executar com Docker
 
@@ -31,7 +32,8 @@ Depois acesse:
 - D3.js: <http://localhost:8080/d3/>
 - p5.js: <http://localhost:8080/p5/>
 - Leaflet: <http://localhost:8080/leaflet/>
-- Mock 8thWall/WebAR: <http://localhost:8080/8thwall-mock/>
+- 8th Wall AR: <http://localhost:8080/8thwall-digital-twin/>
+- Mock WebAR: <http://localhost:8080/8thwall-mock/>
 
 Para parar:
 
@@ -39,12 +41,15 @@ Para parar:
 docker compose down
 ```
 
-## Observação sobre 8thWall
+## Observação sobre 8th Wall
 
-O 8thWall é uma plataforma comercial e normalmente exige conta/projeto online. Por isso este pacote inclui:
+O 8th Wall mudou: o antigo hosted platform foi aposentado e o projeto passou a ser aberto em `8thwall.org`/GitHub. O framework, módulos centrais e ferramentas foram disponibilizados sob MIT, enquanto SLAM segue distribuído separadamente como binário.
 
-1. `web/8thwall-mock`: uma demo WebAR conceitual executável via navegador, usando A-Frame, para mostrar a ideia de overlay operacional.
-2. `web/8thwall-template`: um template comentado de como a cena poderia ser adaptada para um projeto 8thWall real.
+Este pacote agora inclui:
+
+1. `web/8thwall-digital-twin`: demo AR usando `@8thwall/engine-binary`, `xrextras`, `landing-page` e A-Frame.
+2. `web/8thwall-mock`: demo conceitual executável mesmo sem câmera/SLAM.
+3. `web/8thwall-template`: template comentado para adaptação em projetos 8th Wall Studio.
 
 ## Roteiro sugerido para apresentação
 
@@ -53,7 +58,7 @@ O 8thWall é uma plataforma comercial e normalmente exige conta/projeto online. 
 3. **D3.js** — visualização customizada: grafo de entidades e dependências.
 4. **p5.js** — simulação 2D: planta, ocupação e risco.
 5. **Leaflet** — visualização espacial: sensores em campus/cidade.
-6. **8thWall/WebAR** — interface em campo: dados sobre o ativo físico.
+6. **8th Wall/WebAR** — interface em campo: dados sobre o ativo físico.
 
 Frase-guia:
 
