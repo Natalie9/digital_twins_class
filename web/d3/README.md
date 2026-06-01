@@ -1,14 +1,15 @@
-# D3.js — Grafo do Gêmeo Digital
+# D3.js — Fluxo de decisão do Gêmeo Digital
 
 Demonstra uma visualização customizada que seria difícil de representar com gráficos prontos.
 
 ## Demonstra
 
 - SVG manipulado com D3;
-- grafo de relações;
-- nós arrastáveis;
-- tooltip;
-- entidades do Gêmeo Digital: sistema, salas, sensores, ativo HVAC, gateway, modelo, alerta e operador.
+- fluxo explícito: ambiente físico → sensor → gateway → modelo → alerta → operador;
+- seleção interativa de ambientes;
+- destaque do caminho do dado até a decisão;
+- painel lateral com métricas e ação recomendada;
+- animação de partículas para representar o dado trafegando pelo sistema.
 
 ## Execução
 

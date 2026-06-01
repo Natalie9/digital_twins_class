@@ -3,23 +3,159 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>D3.js - Grafo do Gêmeo Digital</title>
+  <title>D3.js - Fluxo de Decisão do Gêmeo Digital</title>
   <link rel="stylesheet" href="../style.css" />
   <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
   <style>
-    svg { width: 100%; height: 680px; background: #fff; border-radius: 18px; box-shadow: 0 8px 24px rgba(15,23,42,.08); }
-    .link { stroke: #94a3b8; stroke-opacity: .7; }
-    .node text { font-size: 12px; paint-order: stroke; stroke: white; stroke-width: 4px; }
-    .tooltip { position: fixed; padding: 10px 12px; background: #172033; color: white; border-radius: 10px; font-size: 13px; pointer-events: none; opacity: 0; }
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: 16px;
+      align-items: stretch;
+      margin-bottom: 16px;
+    }
+
+    .hint-list {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    #details h2 {
+      margin-top: 0;
+    }
+
+    #details .metric {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 7px 0;
+      border-bottom: 1px solid #e5e7eb;
+      color: var(--muted);
+    }
+
+    #details .metric strong {
+      color: var(--text);
+    }
+
+    svg {
+      width: 100%;
+      height: 680px;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(15,23,42,.08);
+    }
+
+    .stage-title {
+      font-size: 13px;
+      font-weight: 800;
+      fill: #334155;
+      text-anchor: middle;
+    }
+
+    .stage-subtitle {
+      font-size: 11px;
+      fill: #64748b;
+      text-anchor: middle;
+    }
+
+    .room-card {
+      cursor: pointer;
+    }
+
+    .room-card rect {
+      stroke: #cbd5e1;
+      stroke-width: 1.5;
+      filter: drop-shadow(0 4px 8px rgba(15,23,42,.08));
+    }
+
+    .room-card.active rect {
+      stroke: #2563eb;
+      stroke-width: 3;
+    }
+
+    .room-label {
+      font-size: 12px;
+      font-weight: 800;
+      fill: #0f172a;
+    }
+
+    .room-metric {
+      font-size: 11px;
+      fill: #475569;
+    }
+
+    .flow-line {
+      fill: none;
+      stroke-width: 4;
+      stroke-linecap: round;
+      opacity: .23;
+    }
+
+    .flow-line.active {
+      opacity: .95;
+      stroke-width: 6;
+    }
+
+    .flow-dot {
+      opacity: 0;
+    }
+
+    .component rect,
+    .component circle {
+      filter: drop-shadow(0 4px 10px rgba(15,23,42,.12));
+    }
+
+    .component-title {
+      font-size: 13px;
+      font-weight: 800;
+      fill: white;
+      text-anchor: middle;
+    }
+
+    .component-subtitle {
+      font-size: 11px;
+      fill: rgba(255,255,255,.82);
+      text-anchor: middle;
+    }
+
+    @media (max-width: 850px) {
+      .intro {
+        grid-template-columns: 1fr;
+      }
+      svg {
+        height: 760px;
+      }
+    }
   </style>
 </head>
 <body>
   <main class="container">
     <a href="../">← voltar</a>
-    <h1>D3.js — Grafo de Entidades do Gêmeo Digital</h1>
-    <p>Visualização customizada das relações entre sistema, salas, sensores, HVAC, modelo preditivo, alerta e operador.</p>
-    <svg id="graph"></svg>
-    <div id="tooltip" class="tooltip"></div>
+    <h1>D3.js — Fluxo de Decisão do Gêmeo Digital</h1>
+
+    <section class="intro">
+      <div class="panel">
+        <p>
+          Esta visualização mostra a cadeia de decisão:
+          <strong>ambiente físico → sensor → gateway → modelo → alerta → operador</strong>.
+          Clique em uma sala para destacar seu fluxo.
+        </p>
+        <ul class="hint-list">
+          <li>As cores indicam o estado atual: normal, atenção ou crítico.</li>
+          <li>A espessura/destaque mostra o caminho do ambiente selecionado.</li>
+          <li>O objetivo é explicar a arquitetura informacional, não apenas valores isolados.</li>
+        </ul>
+      </div>
+
+      <aside id="details" class="panel">
+        <h2>Selecione uma sala</h2>
+        <p>Clique em um ambiente no diagrama para ver as métricas atuais.</p>
+      </aside>
+    </section>
+
+    <svg id="decisionFlow" role="img" aria-label="Fluxo de decisão do Gêmeo Digital"></svg>
   </main>
   <script src="app.js"></script>
 </body>
