@@ -25,7 +25,7 @@ const stages = [
   { key: 'operator', title: 'Operador', subtitle: 'decisão e ação', x: 1030 },
 ];
 
-fetch('../data/sensors.json')
+fetch('../data/sensors.json?v=3', { cache: 'no-store' })
   .then((r) => r.json())
   .then((data) => {
     const latest = data.latest;

@@ -4,7 +4,7 @@ const colors = {
   critico: '#dc2626',
 };
 
-fetch('../data/sensors.json')
+fetch('../data/sensors.json?v=3', { cache: 'no-store' })
   .then((r) => r.json())
   .then((data) => {
     const readings = data.readings;

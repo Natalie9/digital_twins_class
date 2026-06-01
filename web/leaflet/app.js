@@ -316,7 +316,7 @@ async function loadSensorData() {
       { room_id: 'LAB-02', room_name: 'Laboratório Robótica', temperature_c: 25.9, co2_ppm: 960, occupancy: 18, energy_kw: 7.2, status: 'atencao', lat: -23.55910, lng: -46.73125 },
       { room_id: 'SALA-12', room_name: 'Sala de Aula 12', temperature_c: 26.2, co2_ppm: 1120, occupancy: 23, energy_kw: 8.1, status: 'atencao', lat: -23.55880, lng: -46.73230 },
       { room_id: 'HVAC-A', room_name: 'Casa de Máquinas A', temperature_c: 28.4, co2_ppm: 640, occupancy: 4, energy_kw: 10.9, status: 'critico', lat: -23.55985, lng: -46.73265 },
-      { room_id: 'AUD-01', room_name: 'Auditório', temperature_c: 27.1, co2_ppm: 1320, occupancy: 42, energy_kw: 12.8, status: 'critico', lat: -23.55835, lng: -46.73170 },
+      { room_id: 'AUD-01', room_name: 'Auditório', temperature_c: 26.6, co2_ppm: 1133, occupancy: 42, energy_kw: 12.8, status: 'atencao', lat: -23.55835, lng: -46.73170 },
     ],
   };
 }
