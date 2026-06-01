@@ -1,0 +1,19 @@
+services:
+  streamlit:
+    build: ./streamlit-dashboard
+    container_name: gd-streamlit
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./data:/app/data:ro
+    environment:
+      - STREAMLIT_SERVER_HEADLESS=true
+      - STREAMLIT_BROWSER_GATHER_USAGE_STATS=false
+
+  web:
+    image: nginx:alpine
+    container_name: gd-web-demos
+    ports:
+      - "8080:80"
+    volumes:
+      - ./web:/usr/share/nginx/html:ro

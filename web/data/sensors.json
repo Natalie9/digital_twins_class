@@ -1,0 +1,893 @@
+{
+  "readings": [
+    {
+      "time": "08:00",
+      "room_id": "LAB-01",
+      "room_name": "Laboratório IA",
+      "temperature_c": 22.7,
+      "co2_ppm": 661,
+      "occupancy": 6,
+      "energy_kw": 5,
+      "status": "normal",
+      "lat": -23.55955,
+      "lng": -46.73192
+    },
+    {
+      "time": "08:00",
+      "room_id": "LAB-02",
+      "room_name": "Laboratório Robótica",
+      "temperature_c": 22.5,
+      "co2_ppm": 947,
+      "occupancy": 16,
+      "energy_kw": 7.3,
+      "status": "atencao",
+      "lat": -23.5591,
+      "lng": -46.73125
+    },
+    {
+      "time": "08:00",
+      "room_id": "SALA-12",
+      "room_name": "Sala de Aula 12",
+      "temperature_c": 22.9,
+      "co2_ppm": 1085,
+      "occupancy": 19,
+      "energy_kw": 8.2,
+      "status": "atencao",
+      "lat": -23.5588,
+      "lng": -46.7323
+    },
+    {
+      "time": "08:00",
+      "room_id": "HVAC-A",
+      "room_name": "Casa de Máquinas A",
+      "temperature_c": 22.8,
+      "co2_ppm": 1150,
+      "occupancy": 23,
+      "energy_kw": 9.4,
+      "status": "atencao",
+      "lat": -23.55985,
+      "lng": -46.73265
+    },
+    {
+      "time": "08:00",
+      "room_id": "AUD-01",
+      "room_name": "Auditório",
+      "temperature_c": 22.9,
+      "co2_ppm": 1225,
+      "occupancy": 24,
+      "energy_kw": 10,
+      "status": "critico",
+      "lat": -23.55835,
+      "lng": -46.7317
+    },
+    {
+      "time": "09:00",
+      "room_id": "LAB-01",
+      "room_name": "Laboratório IA",
+      "temperature_c": 22.8,
+      "co2_ppm": 1000,
+      "occupancy": 19,
+      "energy_kw": 6.7,
+      "status": "atencao",
+      "lat": -23.55955,
+      "lng": -46.73192
+    },
+    {
+      "time": "09:00",
+      "room_id": "LAB-02",
+      "room_name": "Laboratório Robótica",
+      "temperature_c": 23.1,
+      "co2_ppm": 1163,
+      "occupancy": 22,
+      "energy_kw": 7.8,
+      "status": "atencao",
+      "lat": -23.5591,
+      "lng": -46.73125
+    },
+    {
+      "time": "09:00",
+      "room_id": "SALA-12",
+      "room_name": "Sala de Aula 12",
+      "temperature_c": 23.8,
+      "co2_ppm": 1206,
+      "occupancy": 25,
+      "energy_kw": 8.6,
+      "status": "critico",
+      "lat": -23.5588,
+      "lng": -46.7323
+    },
+    {
+      "time": "09:00",
+      "room_id": "HVAC-A",
+      "room_name": "Casa de Máquinas A",
+      "temperature_c": 23.3,
+      "co2_ppm": 1229,
+      "occupancy": 27,
+      "energy_kw": 9.5,
+      "status": "critico",
+      "lat": -23.55985,
+      "lng": -46.73265
+    },
+    {
+      "time": "09:00",
+      "room_id": "AUD-01",
+      "room_name": "Auditório",
+      "temperature_c": 23.6,
+      "co2_ppm": 1319,
+      "occupancy": 26,
+      "energy_kw": 10.3,
+      "status": "critico",
+      "lat": -23.55835,
+      "lng": -46.7317
+    },
+    {
+      "time": "10:00",
+      "room_id": "LAB-01",
+      "room_name": "Laboratório IA",
+      "temperature_c": 23.3,
+      "co2_ppm": 1018,
+      "occupancy": 20,
+      "energy_kw": 6.6,
+      "status": "atencao",
+      "lat": -23.55955,
+      "lng": -46.73192
+    },
+    {
+      "time": "10:00",
+      "room_id": "LAB-02",
+      "room_name": "Laboratório Robótica",
+      "temperature_c": 23.1,
+      "co2_ppm": 1101,
+      "occupancy": 21,
+      "energy_kw": 7.3,
+      "status": "atencao",
+      "lat": -23.5591,
+      "lng": -46.73125
+    },
+    {
+      "time": "10:00",
+      "room_id": "SALA-12",
+      "room_name": "Sala de Aula 12",
+      "temperature_c": 22.8,
+      "co2_ppm": 1289,
+      "occupancy": 28,
+      "energy_kw": 8.9,
+      "status": "critico",
+      "lat": -23.5588,
+      "lng": -46.7323
+    },
+    {
+      "time": "10:00",
+      "room_id": "HVAC-A",
+      "room_name": "Casa de Máquinas A",
+      "temperature_c": 24.6,
+      "co2_ppm": 1311,
+      "occupancy": 28,
+      "energy_kw": 9.4,
+      "status": "critico",
+      "lat": -23.55985,
+      "lng": -46.73265
+    },
+    {
+      "time": "10:00",
+      "room_id": "AUD-01",
+      "room_name": "Auditório",
+      "temperature_c": 24,
+      "co2_ppm": 1317,
+      "occupancy": 29,
+      "energy_kw": 10.5,
+      "status": "critico",
+      "lat": -23.55835,
+      "lng": -46.7317
+    },
+    {
+      "time": "11:00",
+      "room_id": "LAB-01",
+      "room_name": "Laboratório IA",
+      "temperature_c": 23.1,
+      "co2_ppm": 1074,
+      "occupancy": 19,
+      "energy_kw": 6.4,
+      "status": "atencao",
+      "lat": -23.55955,
+      "lng": -46.73192
+    },
+    {
+      "time": "11:00",
+      "room_id": "LAB-02",
+      "room_name": "Laboratório Robótica",
+      "temperature_c": 23.4,
+      "co2_ppm": 1364,
+      "occupancy": 28,
+      "energy_kw": 8.5,
+      "status": "critico",
+      "lat": -23.5591,
+      "lng": -46.73125
+    },
+    {
+      "time": "11:00",
+      "room_id": "SALA-12",
+      "room_name": "Sala de Aula 12",
+      "temperature_c": 23.9,
+      "co2_ppm": 1310,
+      "occupancy": 28,
+      "energy_kw": 9.3,
+      "status": "critico",
+      "lat": -23.5588,
+      "lng": -46.7323
+    },
+    {
+      "time": "11:00",
+      "room_id": "HVAC-A",
+      "room_name": "Casa de Máquinas A",
+      "temperature_c": 24.1,
+      "co2_ppm": 1508,
+      "occupancy": 34,
+      "energy_kw": 10.2,
+      "status": "critico",
+      "lat": -23.55985,
+      "lng": -46.73265
+    },
+    {
+      "time": "11:00",
+      "room_id": "AUD-01",
+      "room_name": "Auditório",
+      "temperature_c": 24.4,
+      "co2_ppm": 1423,
+      "occupancy": 33,
+      "energy_kw": 10.9,
+      "status": "critico",
+      "lat": -23.55835,
+      "lng": -46.7317
+    },
+    {
+      "time": "12:00",
+      "room_id": "LAB-01",
+      "room_name": "Laboratório IA",
+      "temperature_c": 24,
+      "co2_ppm": 1138,
+      "occupancy": 24,
+      "energy_kw": 7.6,
+      "status": "atencao",
+      "lat": -23.55955,
+      "lng": -46.73192
+    },
+    {
+      "time": "12:00",
+      "room_id": "LAB-02",
+      "room_name": "Laboratório Robótica",
+      "temperature_c": 23.7,
+      "co2_ppm": 1033,
+      "occupancy": 20,
+      "energy_kw": 7.1,
+      "status": "atencao",
+      "lat": -23.5591,
+      "lng": -46.73125
+    },
+    {
+      "time": "12:00",
+      "room_id": "SALA-12",
+      "room_name": "Sala de Aula 12",
+      "temperature_c": 23.8,
+      "co2_ppm": 1441,
+      "occupancy": 32,
+      "energy_kw": 9.2,
+      "status": "critico",
+      "lat": -23.5588,
+      "lng": -46.7323
+    },
+    {
+      "time": "12:00",
+      "room_id": "HVAC-A",
+      "room_name": "Casa de Máquinas A",
+      "temperature_c": 24.7,
+      "co2_ppm": 1310,
+      "occupancy": 30,
+      "energy_kw": 10.4,
+      "status": "critico",
+      "lat": -23.55985,
+      "lng": -46.73265
+    },
+    {
+      "time": "12:00",
+      "room_id": "AUD-01",
+      "room_name": "Auditório",
+      "temperature_c": 25.6,
+      "co2_ppm": 1619,
+      "occupancy": 37,
+      "energy_kw": 11.9,
+      "status": "critico",
+      "lat": -23.55835,
+      "lng": -46.7317
+    },
+    {
+      "time": "13:00",
+      "room_id": "LAB-01",
+      "room_name": "Laboratório IA",
+      "temperature_c": 23.4,
+      "co2_ppm": 1123,
+      "occupancy": 24,
+      "energy_kw": 7,
+      "status": "atencao",
+      "lat": -23.55955,
+      "lng": -46.73192
+    },
+    {
+      "time": "13:00",
+      "room_id": "LAB-02",
+      "room_name": "Laboratório Robótica",
+      "temperature_c": 23.4,
+      "co2_ppm": 1103,
+      "occupancy": 20,
+      "energy_kw": 7.2,
+      "status": "atencao",
+      "lat": -23.5591,
+      "lng": -46.73125
+    },
+    {
+      "time": "13:00",
+      "room_id": "SALA-12",
+      "room_name": "Sala de Aula 12",
+      "temperature_c": 24.5,
+      "co2_ppm": 1393,
+      "occupancy": 30,
+      "energy_kw": 9,
+      "status": "critico",
+      "lat": -23.5588,
+      "lng": -46.7323
+    },
+    {
+      "time": "13:00",
+      "room_id": "HVAC-A",
+      "room_name": "Casa de Máquinas A",
+      "temperature_c": 24.5,
+      "co2_ppm": 1458,
+      "occupancy": 34,
+      "energy_kw": 10.8,
+      "status": "critico",
+      "lat": -23.55985,
+      "lng": -46.73265
+    },
+    {
+      "time": "13:00",
+      "room_id": "AUD-01",
+      "room_name": "Auditório",
+      "temperature_c": 25.3,
+      "co2_ppm": 1290,
+      "occupancy": 30,
+      "energy_kw": 11.1,
+      "status": "critico",
+      "lat": -23.55835,
+      "lng": -46.7317
+    },
+    {
+      "time": "14:00",
+      "room_id": "LAB-01",
+      "room_name": "Laboratório IA",
+      "temperature_c": 24.8,
+      "co2_ppm": 1069,
+      "occupancy": 22,
+      "energy_kw": 7.4,
+      "status": "atencao",
+      "lat": -23.55955,
+      "lng": -46.73192
+    },
+    {
+      "time": "14:00",
+      "room_id": "LAB-02",
+      "room_name": "Laboratório Robótica",
+      "temperature_c": 25.2,
+      "co2_ppm": 1095,
+      "occupancy": 20,
+      "energy_kw": 7.7,
+      "status": "atencao",
+      "lat": -23.5591,
+      "lng": -46.73125
+    },
+    {
+      "time": "14:00",
+      "room_id": "SALA-12",
+      "room_name": "Sala de Aula 12",
+      "temperature_c": 24.5,
+      "co2_ppm": 1153,
+      "occupancy": 24,
+      "energy_kw": 8.7,
+      "status": "atencao",
+      "lat": -23.5588,
+      "lng": -46.7323
+    },
+    {
+      "time": "14:00",
+      "room_id": "HVAC-A",
+      "room_name": "Casa de Máquinas A",
+      "temperature_c": 25.7,
+      "co2_ppm": 1255,
+      "occupancy": 25,
+      "energy_kw": 9.7,
+      "status": "critico",
+      "lat": -23.55985,
+      "lng": -46.73265
+    },
+    {
+      "time": "14:00",
+      "room_id": "AUD-01",
+      "room_name": "Auditório",
+      "temperature_c": 25,
+      "co2_ppm": 1362,
+      "occupancy": 32,
+      "energy_kw": 11.3,
+      "status": "critico",
+      "lat": -23.55835,
+      "lng": -46.7317
+    },
+    {
+      "time": "15:00",
+      "room_id": "LAB-01",
+      "room_name": "Laboratório IA",
+      "temperature_c": 24.8,
+      "co2_ppm": 976,
+      "occupancy": 14,
+      "energy_kw": 5.7,
+      "status": "atencao",
+      "lat": -23.55955,
+      "lng": -46.73192
+    },
+    {
+      "time": "15:00",
+      "room_id": "LAB-02",
+      "room_name": "Laboratório Robótica",
+      "temperature_c": 25.4,
+      "co2_ppm": 1271,
+      "occupancy": 24,
+      "energy_kw": 8.4,
+      "status": "critico",
+      "lat": -23.5591,
+      "lng": -46.73125
+    },
+    {
+      "time": "15:00",
+      "room_id": "SALA-12",
+      "room_name": "Sala de Aula 12",
+      "temperature_c": 25.1,
+      "co2_ppm": 1215,
+      "occupancy": 26,
+      "energy_kw": 9.1,
+      "status": "critico",
+      "lat": -23.5588,
+      "lng": -46.7323
+    },
+    {
+      "time": "15:00",
+      "room_id": "HVAC-A",
+      "room_name": "Casa de Máquinas A",
+      "temperature_c": 25.5,
+      "co2_ppm": 1325,
+      "occupancy": 30,
+      "energy_kw": 9.9,
+      "status": "critico",
+      "lat": -23.55985,
+      "lng": -46.73265
+    },
+    {
+      "time": "15:00",
+      "room_id": "AUD-01",
+      "room_name": "Auditório",
+      "temperature_c": 26.1,
+      "co2_ppm": 1427,
+      "occupancy": 33,
+      "energy_kw": 11.2,
+      "status": "critico",
+      "lat": -23.55835,
+      "lng": -46.7317
+    },
+    {
+      "time": "16:00",
+      "room_id": "LAB-01",
+      "room_name": "Laboratório IA",
+      "temperature_c": 24.5,
+      "co2_ppm": 1035,
+      "occupancy": 17,
+      "energy_kw": 6.4,
+      "status": "atencao",
+      "lat": -23.55955,
+      "lng": -46.73192
+    },
+    {
+      "time": "16:00",
+      "room_id": "LAB-02",
+      "room_name": "Laboratório Robótica",
+      "temperature_c": 24.9,
+      "co2_ppm": 990,
+      "occupancy": 14,
+      "energy_kw": 7.3,
+      "status": "atencao",
+      "lat": -23.5591,
+      "lng": -46.73125
+    },
+    {
+      "time": "16:00",
+      "room_id": "SALA-12",
+      "room_name": "Sala de Aula 12",
+      "temperature_c": 26.2,
+      "co2_ppm": 1204,
+      "occupancy": 22,
+      "energy_kw": 8.1,
+      "status": "critico",
+      "lat": -23.5588,
+      "lng": -46.7323
+    },
+    {
+      "time": "16:00",
+      "room_id": "HVAC-A",
+      "room_name": "Casa de Máquinas A",
+      "temperature_c": 25.4,
+      "co2_ppm": 1225,
+      "occupancy": 25,
+      "energy_kw": 9.5,
+      "status": "critico",
+      "lat": -23.55985,
+      "lng": -46.73265
+    },
+    {
+      "time": "16:00",
+      "room_id": "AUD-01",
+      "room_name": "Auditório",
+      "temperature_c": 27.1,
+      "co2_ppm": 1334,
+      "occupancy": 29,
+      "energy_kw": 10.3,
+      "status": "critico",
+      "lat": -23.55835,
+      "lng": -46.7317
+    },
+    {
+      "time": "17:00",
+      "room_id": "LAB-01",
+      "room_name": "Laboratório IA",
+      "temperature_c": 24.6,
+      "co2_ppm": 830,
+      "occupancy": 10,
+      "energy_kw": 5.7,
+      "status": "normal",
+      "lat": -23.55955,
+      "lng": -46.73192
+    },
+    {
+      "time": "17:00",
+      "room_id": "LAB-02",
+      "room_name": "Laboratório Robótica",
+      "temperature_c": 25.6,
+      "co2_ppm": 956,
+      "occupancy": 14,
+      "energy_kw": 6.7,
+      "status": "atencao",
+      "lat": -23.5591,
+      "lng": -46.73125
+    },
+    {
+      "time": "17:00",
+      "room_id": "SALA-12",
+      "room_name": "Sala de Aula 12",
+      "temperature_c": 25.2,
+      "co2_ppm": 1027,
+      "occupancy": 19,
+      "energy_kw": 8.1,
+      "status": "atencao",
+      "lat": -23.5588,
+      "lng": -46.7323
+    },
+    {
+      "time": "17:00",
+      "room_id": "HVAC-A",
+      "room_name": "Casa de Máquinas A",
+      "temperature_c": 26.7,
+      "co2_ppm": 969,
+      "occupancy": 17,
+      "energy_kw": 8.3,
+      "status": "atencao",
+      "lat": -23.55985,
+      "lng": -46.73265
+    },
+    {
+      "time": "17:00",
+      "room_id": "AUD-01",
+      "room_name": "Auditório",
+      "temperature_c": 26.6,
+      "co2_ppm": 1133,
+      "occupancy": 24,
+      "energy_kw": 10.3,
+      "status": "atencao",
+      "lat": -23.55835,
+      "lng": -46.7317
+    }
+  ],
+  "latest": [
+    {
+      "time": "17:00",
+      "room_id": "LAB-01",
+      "room_name": "Laboratório IA",
+      "temperature_c": 24.6,
+      "co2_ppm": 830,
+      "occupancy": 10,
+      "energy_kw": 5.7,
+      "status": "normal",
+      "lat": -23.55955,
+      "lng": -46.73192
+    },
+    {
+      "time": "17:00",
+      "room_id": "LAB-02",
+      "room_name": "Laboratório Robótica",
+      "temperature_c": 25.6,
+      "co2_ppm": 956,
+      "occupancy": 14,
+      "energy_kw": 6.7,
+      "status": "atencao",
+      "lat": -23.5591,
+      "lng": -46.73125
+    },
+    {
+      "time": "17:00",
+      "room_id": "SALA-12",
+      "room_name": "Sala de Aula 12",
+      "temperature_c": 25.2,
+      "co2_ppm": 1027,
+      "occupancy": 19,
+      "energy_kw": 8.1,
+      "status": "atencao",
+      "lat": -23.5588,
+      "lng": -46.7323
+    },
+    {
+      "time": "17:00",
+      "room_id": "HVAC-A",
+      "room_name": "Casa de Máquinas A",
+      "temperature_c": 26.7,
+      "co2_ppm": 969,
+      "occupancy": 17,
+      "energy_kw": 8.3,
+      "status": "atencao",
+      "lat": -23.55985,
+      "lng": -46.73265
+    },
+    {
+      "time": "17:00",
+      "room_id": "AUD-01",
+      "room_name": "Auditório",
+      "temperature_c": 26.6,
+      "co2_ppm": 1133,
+      "occupancy": 24,
+      "energy_kw": 10.3,
+      "status": "atencao",
+      "lat": -23.55835,
+      "lng": -46.7317
+    }
+  ],
+  "alerts": [
+    {
+      "room_id": "LAB-02",
+      "room_name": "Laboratório Robótica",
+      "level": "atencao",
+      "message": "CO₂ elevado: aumentar ventilação"
+    },
+    {
+      "room_id": "SALA-12",
+      "room_name": "Sala de Aula 12",
+      "level": "atencao",
+      "message": "CO₂ elevado: aumentar ventilação"
+    },
+    {
+      "room_id": "HVAC-A",
+      "room_name": "Casa de Máquinas A",
+      "level": "atencao",
+      "message": "CO₂ elevado: aumentar ventilação"
+    },
+    {
+      "room_id": "AUD-01",
+      "room_name": "Auditório",
+      "level": "atencao",
+      "message": "CO₂ elevado: aumentar ventilação"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "predio",
+        "label": "Edifício inteligente",
+        "type": "sistema"
+      },
+      {
+        "id": "hvac",
+        "label": "HVAC central",
+        "type": "ativo"
+      },
+      {
+        "id": "gateway",
+        "label": "Gateway IoT",
+        "type": "infra"
+      },
+      {
+        "id": "modelo",
+        "label": "Modelo preditivo",
+        "type": "modelo"
+      },
+      {
+        "id": "LAB-01",
+        "label": "Laboratório IA",
+        "type": "sala"
+      },
+      {
+        "id": "LAB-02",
+        "label": "Laboratório Robótica",
+        "type": "sala"
+      },
+      {
+        "id": "SALA-12",
+        "label": "Sala de Aula 12",
+        "type": "sala"
+      },
+      {
+        "id": "HVAC-A",
+        "label": "Casa de Máquinas A",
+        "type": "sala"
+      },
+      {
+        "id": "AUD-01",
+        "label": "Auditório",
+        "type": "sala"
+      },
+      {
+        "id": "sensor-LAB-01",
+        "label": "Sensor LAB-01",
+        "type": "sensor"
+      },
+      {
+        "id": "sensor-LAB-02",
+        "label": "Sensor LAB-02",
+        "type": "sensor"
+      },
+      {
+        "id": "sensor-SALA-12",
+        "label": "Sensor SALA-12",
+        "type": "sensor"
+      },
+      {
+        "id": "sensor-HVAC-A",
+        "label": "Sensor HVAC-A",
+        "type": "sensor"
+      },
+      {
+        "id": "sensor-AUD-01",
+        "label": "Sensor AUD-01",
+        "type": "sensor"
+      },
+      {
+        "id": "alerta-co2",
+        "label": "Alerta CO₂",
+        "type": "alerta"
+      },
+      {
+        "id": "operador",
+        "label": "Operador",
+        "type": "usuario"
+      }
+    ],
+    "links": [
+      {
+        "source": "predio",
+        "target": "LAB-01",
+        "label": "contém"
+      },
+      {
+        "source": "LAB-01",
+        "target": "sensor-LAB-01",
+        "label": "mede"
+      },
+      {
+        "source": "sensor-LAB-01",
+        "target": "gateway",
+        "label": "envia dados"
+      },
+      {
+        "source": "hvac",
+        "target": "LAB-01",
+        "label": "climatiza"
+      },
+      {
+        "source": "predio",
+        "target": "LAB-02",
+        "label": "contém"
+      },
+      {
+        "source": "LAB-02",
+        "target": "sensor-LAB-02",
+        "label": "mede"
+      },
+      {
+        "source": "sensor-LAB-02",
+        "target": "gateway",
+        "label": "envia dados"
+      },
+      {
+        "source": "hvac",
+        "target": "LAB-02",
+        "label": "climatiza"
+      },
+      {
+        "source": "predio",
+        "target": "SALA-12",
+        "label": "contém"
+      },
+      {
+        "source": "SALA-12",
+        "target": "sensor-SALA-12",
+        "label": "mede"
+      },
+      {
+        "source": "sensor-SALA-12",
+        "target": "gateway",
+        "label": "envia dados"
+      },
+      {
+        "source": "hvac",
+        "target": "SALA-12",
+        "label": "climatiza"
+      },
+      {
+        "source": "predio",
+        "target": "HVAC-A",
+        "label": "contém"
+      },
+      {
+        "source": "HVAC-A",
+        "target": "sensor-HVAC-A",
+        "label": "mede"
+      },
+      {
+        "source": "sensor-HVAC-A",
+        "target": "gateway",
+        "label": "envia dados"
+      },
+      {
+        "source": "hvac",
+        "target": "HVAC-A",
+        "label": "climatiza"
+      },
+      {
+        "source": "predio",
+        "target": "AUD-01",
+        "label": "contém"
+      },
+      {
+        "source": "AUD-01",
+        "target": "sensor-AUD-01",
+        "label": "mede"
+      },
+      {
+        "source": "sensor-AUD-01",
+        "target": "gateway",
+        "label": "envia dados"
+      },
+      {
+        "source": "hvac",
+        "target": "AUD-01",
+        "label": "climatiza"
+      },
+      {
+        "source": "gateway",
+        "target": "modelo",
+        "label": "alimenta"
+      },
+      {
+        "source": "modelo",
+        "target": "alerta-co2",
+        "label": "detecta risco"
+      },
+      {
+        "source": "alerta-co2",
+        "target": "operador",
+        "label": "notifica"
+      }
+    ]
+  }
+}
