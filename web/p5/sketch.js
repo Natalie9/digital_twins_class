@@ -14,19 +14,19 @@ const statusLabel = {
 };
 
 const layout = {
-  'LAB-01': { name: 'Lab IA', x: 40, y: 50, w: 250, h: 180 },
-  'LAB-02': { name: 'Robótica', x: 310, y: 50, w: 250, h: 180 },
-  'SALA-12': { name: 'Sala 12', x: 580, y: 50, w: 250, h: 180 },
-  'HVAC-A': { name: 'HVAC', x: 40, y: 270, w: 250, h: 180 },
-  'AUD-01': { name: 'Auditório', x: 310, y: 270, w: 520, h: 180 },
+  'LAB-01': { name: 'Lab IA', x: 40, y: 50, w: 250, h: 180, area: 45 },
+  'LAB-02': { name: 'Robótica', x: 310, y: 50, w: 250, h: 180, area: 48 },
+  'SALA-12': { name: 'Sala 12', x: 580, y: 50, w: 250, h: 180, area: 52 },
+  'HVAC-A': { name: 'HVAC', x: 40, y: 270, w: 250, h: 180, area: 32 },
+  'AUD-01': { name: 'Auditório', x: 310, y: 270, w: 520, h: 180, area: 118 },
 };
 
 const fallbackRooms = [
-  { id: 'LAB-01', name: 'Lab IA', x: 40, y: 50, w: 250, h: 180, temp: 24.6, co2: 830, occ: 10, energy: 5.7 },
-  { id: 'LAB-02', name: 'Robótica', x: 310, y: 50, w: 250, h: 180, temp: 25.6, co2: 956, occ: 18, energy: 7.2 },
-  { id: 'SALA-12', name: 'Sala 12', x: 580, y: 50, w: 250, h: 180, temp: 25.2, co2: 1027, occ: 23, energy: 8.1 },
-  { id: 'HVAC-A', name: 'HVAC', x: 40, y: 270, w: 250, h: 180, temp: 28.4, co2: 640, occ: 4, energy: 10.9 },
-  { id: 'AUD-01', name: 'Auditório', x: 310, y: 270, w: 520, h: 180, temp: 26.6, co2: 1133, occ: 42, energy: 12.8 },
+  { id: 'LAB-01', name: 'Lab IA', x: 40, y: 50, w: 250, h: 180, area: 45, temp: 24.6, co2: 830, occ: 10, energy: 5.7 },
+  { id: 'LAB-02', name: 'Robótica', x: 310, y: 50, w: 250, h: 180, area: 48, temp: 25.6, co2: 956, occ: 18, energy: 7.2 },
+  { id: 'SALA-12', name: 'Sala 12', x: 580, y: 50, w: 250, h: 180, area: 52, temp: 25.2, co2: 1027, occ: 23, energy: 8.1 },
+  { id: 'HVAC-A', name: 'HVAC', x: 40, y: 270, w: 250, h: 180, area: 32, temp: 28.4, co2: 640, occ: 4, energy: 10.9 },
+  { id: 'AUD-01', name: 'Auditório', x: 310, y: 270, w: 520, h: 180, area: 118, temp: 26.6, co2: 1133, occ: 42, energy: 12.8 },
 ];
 
 function preload() {
@@ -88,6 +88,7 @@ function buildRoomsFromData() {
       y: layout[sensor.room_id].y,
       w: layout[sensor.room_id].w,
       h: layout[sensor.room_id].h,
+      area: layout[sensor.room_id].area,
       temp: sensor.temperature_c,
       co2: sensor.co2_ppm,
       occ: sensor.occupancy,
@@ -118,12 +119,16 @@ function draw() {
     room.temp += room.id === 'HVAC-A' ? 0.001 : map(room.occ, 0, 50, -0.001, 0.002);
     room.co2 = constrain(room.co2, 500, 1600);
     room.temp = constrain(room.temp, 20, 32);
-    drawRoom(room);
+    drawRoomBase(room);
   }
 
   for (const p of particles) {
     p.move();
     p.draw();
+  }
+
+  for (const room of rooms) {
+    drawRoomInfo(room);
   }
 
   fill('#172033');
@@ -158,7 +163,7 @@ function statusFill(status) {
   return color(220, 252, 231);
 }
 
-function drawRoom(room) {
+function drawRoomBase(room) {
   const status = roomStatus(room);
   const selected = room.id === selectedRoomId;
 
@@ -168,23 +173,39 @@ function drawRoom(room) {
   rect(room.x, room.y, room.w, room.h, 14);
 
   noStroke();
-  fill('#0f172a');
+  fill(255, 255, 255, 80);
+  rect(room.x + 10, room.y + 10, room.w - 20, 142, 12);
+}
+
+function drawRoomInfo(room) {
+  const status = roomStatus(room);
+  const panelH = 142;
+
+  noStroke();
+  fill(15, 23, 42, 218);
+  rect(room.x + 10, room.y + 10, room.w - 20, panelH, 12);
+
+  fill('#f8fafc');
   textSize(18);
-  text(room.name, room.x + 16, room.y + 30);
+  text(room.name, room.x + 20, room.y + 34);
 
-  drawMetricBar(room.x + 16, room.y + 55, room.w - 32, '🌡️', room.temp, 25.5, 27.5, 20, 32, '°C');
-  drawMetricBar(room.x + 16, room.y + 91, room.w - 32, '🌫️', room.co2, 850, 1200, 500, 1600, 'ppm');
+  fill('#cbd5e1');
+  textSize(12);
+  text(`${room.area} m²`, room.x + room.w - 70, room.y + 34);
 
-  fill('#475569');
+  drawMetricBar(room.x + 20, room.y + 59, room.w - 40, '🌡️', room.temp, 25.5, 27.5, 20, 32, '°C');
+  drawMetricBar(room.x + 20, room.y + 95, room.w - 40, '🌫️', room.co2, 850, 1200, 500, 1600, 'ppm');
+
+  fill('#cbd5e1');
   textSize(13);
-  text(`ocupação: ${room.occ}`, room.x + 16, room.y + 134);
+  text(`ocupação: ${room.occ}`, room.x + 20, room.y + 138);
 
   const color = statusColor(status);
   fill(color);
-  rect(room.x + room.w - 98, room.y + 18, 78, 26, 999);
+  rect(room.x + room.w - 98, room.y + room.h - 38, 78, 26, 999);
   fill('white');
   textSize(12);
-  text(status, room.x + room.w - 84, room.y + 36);
+  text(status, room.x + room.w - 84, room.y + room.h - 20);
 }
 
 function drawMetricBar(x, y, w, icon, value, attention, critical, minValue, maxValue, unit) {
@@ -193,12 +214,12 @@ function drawMetricBar(x, y, w, icon, value, attention, critical, minValue, maxV
   const barX = x + 42;
   const barW = w - 42;
 
-  fill('#0f172a');
+  fill('#f8fafc');
   noStroke();
   textSize(12);
   text(`${icon} ${Math.round(value)} ${unit}`, x, y);
 
-  fill('#e5e7eb');
+  fill('#475569');
   rect(barX, y + 8, barW, 9, 999);
   fill(statusColor(status));
   rect(barX, y + 8, barW * pct, 9, 999);
@@ -286,6 +307,7 @@ function updateSelectedPanel(room) {
       <div class="metric"><span>Temperatura</span><strong>${room.temp.toFixed(1)} °C</strong></div>
       <div class="metric"><span>CO₂</span><strong>${Math.round(room.co2)} ppm</strong></div>
       <div class="metric"><span>Ocupação</span><strong>${room.occ}</strong></div>
+      <div class="metric"><span>Área</span><strong>${room.area} m²</strong></div>
       <div class="metric"><span>Energia</span><strong>${room.energy.toFixed(1)} kW</strong></div>
     </div>
     <div class="action-box"><strong>Diagnóstico:</strong><br>${diagnostic}</div>

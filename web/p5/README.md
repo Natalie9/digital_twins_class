@@ -12,6 +12,8 @@ Demonstra uma planta baixa simplificada com comportamento dinâmico.
 - botão de reset;
 - layout responsivo sem painel lateral competindo com o canvas;
 - indicadores separados de temperatura e CO₂;
+- áreas dos ambientes em metros quadrados;
+- cartões internos com fundo escuro/transparente para evitar sobreposição com partículas;
 - relação entre ocupação, CO₂, temperatura e status operacional.
 
 ## Uso em aula
